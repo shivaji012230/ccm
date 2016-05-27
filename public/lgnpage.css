@@ -1,0 +1,25 @@
+md-content {
+	overflow: hidden;
+}
+body {
+	font-size: 14px;
+	font-family: "noto";
+}
+.lgn {
+	min-width: 300px;
+	max-height: 500px;
+}
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table {
+	min-width: 500px;
+}
+th,td {
+	text-align: center;
+}
+.minhgt {
+	min-height: 100%;
+}
