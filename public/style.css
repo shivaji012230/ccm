@@ -1,0 +1,101 @@
+
+body {
+    font-size: 14px;
+    font-family: "noto";
+}
+.lgn {
+    min-width: 400px;
+}
+table, th , td  {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+table {
+    min-width: 700px;
+    width: 100%;
+}
+th,td {
+    text-align: center;
+}
+th {
+    background: #2196F3;
+    height: 40px;
+}
+.mySearch {
+    height: 30px;
+    margin-top: 6px;
+}
+.minhgt {
+    min-height: 100%;
+}
+.leads_bttn {
+    text-transform: none;
+    font-size: 0.8em;
+}
+.lable_clr {
+    color: rgba(0,0,0,0.38);
+}
+md-input-container label span.lacs_per_user {
+    color: orange;
+}
+md-menu-bar {
+    padding: 0px;
+}
+.postn {
+    position: relative;
+}
+.dialog_width {
+    width: 500px;
+}
+.leads_toolbar {
+    margin-top: 8px;
+}
+.flex {
+  -webkit-flex: 1 1 0%;
+      -ms-flex: 1 1 0%;
+          flex: 1 1 0%;
+  box-sizing: border-box;
+}
+.ccode {
+    z-index: 0;
+}
+#mblnm_label{
+    margin-left: 5px;
+}
+#ccode_afterselect {
+    margin-top: 30px;
+    margin-left: -60px;
+    width: 50px;
+}
+.mblno_container {
+    margin-left: 10px;
+    width: 100%;
+}
+.ccode ._md-select-value>span:not(._md-select-icon) ._md-text {
+    display: none;
+}
+@media all and (max-width:600px) {
+    .lgn {
+	min-width: 280px;
+        width: 280px;
+    }
+    table {
+	min-width: 300px;
+        width: 100%;
+    }
+    .leads_bttn {
+        text-transform: none;
+        font-size: 0.6em;
+        letter-spacing: normal;
+    }
+    md-radio-group.mrgn_btm  md-radio-button{
+        margin-bottom: 16px;
+    }
+}
+@media all and (min-width:600px) and (max-width:960px) {
+    table {
+	min-width: 500px;
+        width:100%;
+    }
+}

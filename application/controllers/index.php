@@ -6,9 +6,8 @@ class Index extends Controller{
   }
   
   public function index(){
-    $this->view->render('index/index');
+    $this->view->render('index/login',TRUE);
   }
-
   public function login(){
     $this->view->render('index/login',TRUE);
   }

@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 
         <!-- My Style Sheets -->
-        <link rel="stylesheet" type="text/css" href="./public/lgnpage.css">
+        <link rel="stylesheet" type="text/css" href="./public/style.css">
 
         <!-- Angular Material requires Angular.js Libraries -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
@@ -18,10 +18,9 @@
 
         <!-- Angular Material Library -->
         <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-        <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<!--        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>-->
+        
         <!-- Custom Js -->
         <script type="text/javascript" src="./public/home.js"></script>
     </head>
-    <body>
+    <body ng-controller="ccm_controller">

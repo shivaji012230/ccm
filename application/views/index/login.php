@@ -1,15 +1,21 @@
+<?php
+//session_start();
+if(isset($_SESSION['user_name'])) {
+    header("Location:/leads");
+}
+?>
 
 <div layout="row"  layout-align="center center" style="height:100%">
   <div layout="column" layout-align="center center" >
     <div  layout="row" layout-align="center center" >
-    <div class="md-whiteframe-z1 lgn" ng-controller="lgn_controller" layout="column" layout-align="">
-      <md-toolbar >
+    <div class="md-whiteframe-z1 lgn"  layout="column" layout-align="">
+      <md-toolbar>
         <div class="md-toolbar-tools">
           Login
         </div>
       </md-toolbar>
       <md-content layout="column" class="md-padding">
-        <form name="lgnfrm" action="login.php" method="post" >
+        <form name="lgnfrm" action="main_login.php" method="post" >
           <md-input-container class="md-block">
             <label class="md-accent">username</label>
             <input type="text" md-maxlength="30" required  name="username" ng-model="lgnfrm_username">
