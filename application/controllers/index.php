@@ -21,5 +21,19 @@ class Index extends Controller{
     $this->view->render('index/leads');
   }
   
+  public function leadsForm(){
+    $this->view->render('partials/leads_form_dialog',TRUE);
+  }
   
+  public function employeeForm(){
+    $this->view->render('partials/emp_form_dialog',TRUE);
+  }
+  
+  public function rcpForm(){
+    $this->view->render('partials/rcp_form_dialog',TRUE);
+  }
+  
+  public function toast(){
+    $this->view->render('partials/toast_template');
+  }
 }

@@ -11,7 +11,7 @@
             <form name="leadsfrm" ng-submit="leadsfrm.$valid && leadsFormData()" novalidate>
                 <md-input-container  class="md-block" md-is-error="leadsfrm.customer_name.$invalid && (leadsfrm.$submitted || leadsfrm.customer_name.$dirty)">
                     <label>Customer Name</label>
-                    <input type="text" autofocus name="customer_name" ng-required="true" ng-minlength="5" ng-maxlength="30" ng-model="leads.customer_name" ng-pattern="/^[a-zA-Z.\s]*$/">
+                    <input type="text"  name="customer_name" ng-required="true" ng-minlength="5" ng-maxlength="30" ng-model="leads.customer_name" ng-pattern="/^[a-zA-Z.\s]*$/">
                     <div ng-messages="leadsfrm.customer_name.$error" ng-if="leadsfrm.$submitted || leadsfrm.customer_name.$touched">
                         <div ng-message="required">Customer Name is required.</div>
                         <div ng-message="minlength">Customer Name is too short.</div>
@@ -37,8 +37,9 @@
                         <div ng-message="required">Self Employee Occupation is required.</div>
                     </div>
                 </md-input-container>
-                <div layout="column" >
-                    <div layout="column" ng-if="leads.select_customer == 'Self Employeed'">
+                <div class="md-padding" ng-if="leads.select_customer === ''"></div>
+                <div layout="column">
+                    <div layout="column" ng-if="leads.select_customer === 'Self Employeed'">
                         <md-input-container md-is-error="leadsfrm.self_emp.$invalid && (leadsfrm.$submitted || leadsfrm.self_emp.$dirty)">    
                             <md-radio-group  class="md-padding md-primary" name="self_emp" ng-required="true" ng-model="leads.self_emp">
                                 <md-radio-button value="Proprietary company" >Proprietary company</md-radio-button>
@@ -67,13 +68,15 @@
                                 <div ng-message="pattern">Please enter valid sales.</div>
                             </div>  
                         </md-input-container>
-                        <md-input-container class="md-block" md-is-error="leadsfrm.pos_business.$invalid && (leadsfrm.$submitted || leadsfrm.pos_business.$dirty)">
-                            <label>PoS Business Since</label>
-                            <input type="text" name="pos_business" placeholder="mm/dd/yyyy" ng-required="true" ng-pattern="/^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{2}|\d{4})$/" ng-model="leads.pos_business">
-                            <div ng-messages="leadsfrm.pos_business.$error" ng-if="leadsfrm.$submitted || leadsfrm.pos_business.$touched">
-                                <div ng-message-exp="['required','pattern']">Please enter a valid date like mm/dd/yyyy.</div>
-                            </div>  
-                        </md-input-container>
+                        
+                        <md-datepicker name="dateField" id="dateField" ng-model="leads.myDate" md-placeholder="Enter date" required date-Validation></md-datepicker>
+                        <div class="validation-messages" ng-messages="leadsfrm.dateField.$error" ng-if="leadsfrm.$submitted || leadsfrm.dateField.$touched">
+                            <div ng-message="valid">The entered value is not a date!</div>
+                            <div ng-message="required">This date is required!</div>
+                        </div>
+                        <div class="md-padding">{{leads.myDate | date:"MM-dd-yyyy"}}</div>
+                        <div style="color:red;" ng-show="leadsfrm.dateField.$error.date1">This is not a valid date</div>
+                        <div class="md-padding"></div>
                         <div layout="column" >
                             <label class="lable_clr">Business Premises</label>
                             <md-input-container md-is-error="leadsfrm.Owned_Returned.$invalid && (leadsfrm.$submitted || leadsfrm.Owned_Returned.$dirty)">
@@ -108,18 +111,9 @@
                                     <div ng-message="pattern">Please enter a valid Mobile Number.</div>
                                 </div>
                             </md-input-container>
-                        </div>
-                        <!--<md-input-container class="md-block" md-is-error="leadsfrm.business_phn.$invalid && (leadsfrm.$submitted || leadsfrm.business_phn.$dirty)">
-                            <label>Business Phone Number</label>
-                            <input type="number" name="business_phn" ng-required="true" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" ng-model="leads.business_phn">
-                            <div ng-messages="leadsfrm.business_phn.$error" ng-if="leadsfrm.$submitted || leadsfrm.business_phn.$touched">
-                                <div ng-message="required">phone number is required.</div>
-                                <div ng-message="pattern">Please enter a valid 10 digit phone number.</div>
-                            </div>  
-                        </md-input-container>-->
-
+                        </div>                  
                     </div>
-                    <div  layout="column" id="employee" ng-if="leads.select_customer == 'Employee'">
+                    <div  layout="column" id="employee" ng-if="leads.select_customer === 'Employee'">
                         <md-input-container md-is-error="leadsfrm.employee.$invalid && (leadsfrm.$submitted || leadsfrm.employee.$dirty)">
                             <md-radio-group name="employee" ng-required="true" ng-model="leads.employee" class="md-padding md-primary">
                                 <md-radio-button value="Proprietary">Proprietary company</md-radio-button>
@@ -131,7 +125,7 @@
                             </div>
                         </md-input-container>    
                     </div>
-                    <div layout="column" id="professional" ng-if="leads.select_customer == 'Professional'">
+                    <div layout="column" id="professional" ng-if="leads.select_customer === 'Professional'">
                         <md-input-container md-is-error="leadsfrm.professional.$invalid && (leadsfrm.$submitted || leadsfrm.professional.$dirty)">
                             <md-radio-group name="professional" ng-required="true" ng-model="leads.professional" class="md-padding md-primary">
                                 <md-radio-button value="Doctor">Doctor</md-radio-button>
@@ -143,7 +137,6 @@
                             </div>
                         </md-input-container>
                     </div>
-
                 </div>
                 <md-input-container  class="md-block"  md-is-error="leadsfrm.customer_Annual_Income.$invalid && (leadsfrm.$submitted || leadsfrm.customer_Annual_Income.$dirty)">
                     <label>Customers Annual Income<span class="lacs_per_user">(lacs per user)</span></label>
@@ -176,7 +169,8 @@
                     </div>
                 </md-input-container>
                 <md-input-container layout layout-align="center center">
-                    <md-button type="submit" class="md-raised md-accent">Submit Lead</md-button>
+                    <md-button type="submit" class="md-primary md-raised">Submit Lead</md-button>
+                    <md-button  class="md-raised md-primary" ng-click="leadsResetForm()">reset</md-button>
                 </md-input-container>
             </form>
         </div>

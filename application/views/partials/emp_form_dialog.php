@@ -11,7 +11,7 @@
         <form name="empfrm" ng-submit="empfrm.$valid && empFormData()" novalidate>
             <md-input-container class="md-block" md-is-error="empfrm.emp_name.$invalid && (empfrm.$submitted || empfrm.emp_name.$dirty)">
                 <label>Name</label>
-                <input type="text" autofocus ng-required="true" ng-minlength="5" ng-maxlength="30" name="emp_name" ng-model="emp.emp_name" ng-pattern="/^[a-zA-Z\s.]*$/">
+                <input type="text"  ng-required="true" ng-minlength="5" ng-maxlength="30" name="emp_name" ng-model="emp.emp_name" ng-pattern="/^[a-zA-Z\s.]*$/">
                 <div ng-messages="empfrm.emp_name.$error" ng-if="empfrm.$submitted || empfrm.emp_name.$touched" role="alert" >
                     <div ng-message="required">Please enter a name.</div>
                     <div ng-message="minlength">Name is too short</div>
@@ -71,6 +71,7 @@
             </md-input-container>
             <md-input-container layout layout-align="center center">
                 <md-button type="submit"  class="md-raised md-primary" >submit</md-button>
+                <md-button  class="md-raised md-primary" ng-click="empResetForm()">reset</md-button>
             </md-input-container>
         </form>
     </div>

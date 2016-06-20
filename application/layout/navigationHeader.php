@@ -1,5 +1,5 @@
-<md-toolbar>
-    <div class="md-toolbar-tools">
+<md-toolbar >
+    <div class="md-toolbar-tools" id="toastContainer" ng-controller="DialogController">
         <div layout layout-align="space-between center" flex>
             <div><h1>ccm logo</h1></div>
             <div layout layout-align="center center">

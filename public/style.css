@@ -6,19 +6,19 @@ body {
 .lgn {
     min-width: 400px;
 }
-table, th , td  {
+.user table, .user table th ,.user table td  {
     border: 1px solid grey;
     border-collapse: collapse;
     padding: 5px;
 }
-table {
+.user table {
     min-width: 700px;
     width: 100%;
 }
-th,td {
+.user table th,.user table td {
     text-align: center;
 }
-th {
+.user table th {
     background: #2196F3;
     height: 40px;
 }
@@ -30,8 +30,7 @@ th {
     min-height: 100%;
 }
 .leads_bttn {
-    text-transform: none;
-    font-size: 0.8em;
+    text-transform: none; 
 }
 .lable_clr {
     color: rgba(0,0,0,0.38);
@@ -52,10 +51,10 @@ md-menu-bar {
     margin-top: 8px;
 }
 .flex {
-  -webkit-flex: 1 1 0%;
-      -ms-flex: 1 1 0%;
-          flex: 1 1 0%;
-  box-sizing: border-box;
+    -webkit-flex: 1 1 0%;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+    box-sizing: border-box;
 }
 .ccode {
     z-index: 0;
@@ -75,27 +74,53 @@ md-menu-bar {
 .ccode ._md-select-value>span:not(._md-select-icon) ._md-text {
     display: none;
 }
+.validation-messages {
+    color: #dd2c00;
+}
+md-toast { 
+position: fixed;
+margin-left: 30%;
+text-align: center;
+width: 40%; 
+    animation:ease,fade_out 10s;
+    animation-fill-mode: both;
+}
+@keyframes fade_out{
+    0%{opacity:1;}
+    100%{opacity:0}
+}
 @media all and (max-width:600px) {
     .lgn {
-	min-width: 280px;
+        min-width: 280px;
         width: 280px;
     }
-    table {
-	min-width: 300px;
+    .user table {
+        min-width: 300px;
         width: 100%;
     }
     .leads_bttn {
         text-transform: none;
-        font-size: 0.6em;
-        letter-spacing: normal;
+
     }
     md-radio-group.mrgn_btm  md-radio-button{
         margin-bottom: 16px;
     }
+    md-toast{ 
+        position: fixed;
+        margin-left: 25%;
+        text-align: center;
+        width: 50%;
+    }
 }
 @media all and (min-width:600px) and (max-width:960px) {
-    table {
-	min-width: 500px;
+    .user table {
+        min-width: 500px;
         width:100%;
+    }
+    md-toast{ 
+        position: fixed;
+        margin-left: 25%;
+        text-align: center;
+        width: 50%;
     }
 }

@@ -8,13 +8,12 @@ if(!isset($_SESSION['user_name'])) {
     <md-content>
         <div layout="column" layout-align="center center">
             <div class="md-padding"></div>
-            <div layout layout-xs="column">
+            <div layout layout-xs="column" >
                 <md-button class="md-raised md-accent" ng-click="addNewRcp()">Add New Rcp</md-button>
                 <input type="text" class="mySearch" ng-model="mySearch" placeholder="search">
             </div>
-            <div class="md-padding"></div>
-            
-            <div class="md-padding">
+            <div class="md-padding" ></div>
+            <div class="md-padding user">
                 <table>
                     <tr>
                         <th>Name</th>
