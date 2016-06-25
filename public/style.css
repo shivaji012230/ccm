@@ -6,25 +6,49 @@ body {
 .lgn {
     min-width: 400px;
 }
-.user table, .user table th ,.user table td  {
-    border: 1px solid grey;
-    border-collapse: collapse;
-    padding: 5px;
+.user table  {
+/*    border: 1px solid black;*/
+/*    border-collapse: collapse;*/
+/*    padding: 5px;*/
 }
 .user table {
     min-width: 700px;
     width: 100%;
 }
-.user table th,.user table td {
-    text-align: center;
+.user table thead tr th,.user table tbody tr td {
+    text-align: center;    
 }
-.user table th {
+.user table thead tr th {
     background: #2196F3;
-    height: 40px;
+    color: white;
+}
+.user table tbody tr {
+/*    box-shadow: 0px 0px 5px 0.5px grey;*/
+    margin: 4px;
+    background: white;
+}
+.user table tbody tr:hover {
+    background: #BDBDBD;
+/*    border-top: 1px solid black;
+    border-bottom: 1px solid black;*/
+    margin-bottom: 2px;
+}
+.suspend.md-raised {
+    color: #FDD835;
+}
+.delete.md-raised {
+    color: #F44336;
+}
+.accept.md-raised {
+    color: green;
 }
 .mySearch {
     height: 30px;
     margin-top: 6px;
+    padding-right: 30px;    
+}
+.searchIcon.md-icon-button {    
+    margin-left: -37px;    
 }
 .minhgt {
     min-height: 100%;
@@ -82,12 +106,21 @@ position: fixed;
 margin-left: 30%;
 text-align: center;
 width: 40%; 
-    animation:ease,fade_out 10s;
+    animation:ease,fade_out 5s;
     animation-fill-mode: both;
 }
 @keyframes fade_out{
     0%{opacity:1;}
     100%{opacity:0}
+}
+.menu_cls {
+    color: white;
+}
+.menu_cls:hover{
+    color: black;
+}
+.menu_cls.active {
+    color: black;
 }
 @media all and (max-width:600px) {
     .lgn {
@@ -95,7 +128,7 @@ width: 40%;
         width: 280px;
     }
     .user table {
-        min-width: 300px;
+        min-width: 260px;
         width: 100%;
     }
     .leads_bttn {

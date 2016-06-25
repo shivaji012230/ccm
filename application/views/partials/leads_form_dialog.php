@@ -8,7 +8,7 @@
     </div>
     <md-dialog-content >
         <div class="md-dialog-content md-padding"  layout="column" >
-            <form name="leadsfrm" ng-submit="leadsfrm.$valid && leadsFormData()" novalidate>
+            <form name="leadsfrm" id="leadsFormDetails"  ng-submit="leadsfrm.$valid && leadsFormData(leads,$event)" novalidate>
                 <md-input-container  class="md-block" md-is-error="leadsfrm.customer_name.$invalid && (leadsfrm.$submitted || leadsfrm.customer_name.$dirty)">
                     <label>Customer Name</label>
                     <input type="text"  name="customer_name" ng-required="true" ng-minlength="5" ng-maxlength="30" ng-model="leads.customer_name" ng-pattern="/^[a-zA-Z.\s]*$/">
@@ -168,9 +168,9 @@
                         <div ng-message="maxlength">Aaadhaar card number must have 12 digit only.</div>
                     </div>
                 </md-input-container>
-                <md-input-container layout layout-align="center center">
-                    <md-button type="submit" class="md-primary md-raised">Submit Lead</md-button>
-                    <md-button  class="md-raised md-primary" ng-click="leadsResetForm()">reset</md-button>
+                <md-input-container layout layout-align="end center">
+                    <md-button type="submit" class="md-primary">Submit</md-button>
+                    <md-button  class="md-accent" ng-click="leadsResetForm()">reset</md-button>
                 </md-input-container>
             </form>
         </div>

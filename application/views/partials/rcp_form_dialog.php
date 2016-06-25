@@ -8,7 +8,7 @@
     </div>
     <md-dialog-content >
         <div class="md-dialog-content md-padding"  layout="column" >
-            <form name="rcpfrm" ng-submit="rcpfrm.$valid && rcpFormData()" novalidate>
+            <form name="rcpfrm" id="rcpFormDetails" ng-submit="rcpfrm.$valid && rcpFormData(rcp,$event)" novalidate>
                 <md-input-container class="md-block" md-is-error="rcpfrm.rcp_name.$invalid && (rcpfrm.$submitted || rcpfrm.rcp_name.$dirty)">
                     <label >Name</label>
                     <input type="text" name="rcp_name" ng-required="true" ng-minlength="5" ng-maxlength="30" ng-model="rcp.rcp_name" ng-pattern="/^[a-zA-Z.\s]*$/">
@@ -69,9 +69,9 @@
                     </div>
                 </md-input-container>
                 
-                <md-input-container layout layout-align="center center">
-                    <md-button type="submit" class="md-raised md-primary">submit</md-button>
-                    <md-button  class="md-raised md-primary" ng-click="rcpResetForm()">reset</md-button>
+                <md-input-container layout layout-align="end center">
+                    <md-button type="submit" class=" md-primary">submit</md-button>
+                    <md-button  class="md-accent" ng-click="rcpResetForm()">reset</md-button>
                 </md-input-container>
             </form>
         </div>
