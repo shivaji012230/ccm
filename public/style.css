@@ -2,6 +2,7 @@
 body {
     font-size: 14px;
     font-family: "noto";
+    line-height: 24px;
 }
 .lgn {
     min-width: 400px;
@@ -18,20 +19,23 @@ body {
 .user table thead tr th,.user table tbody tr td {
     text-align: center;    
 }
-.user table thead tr th {
+.user table tbody tr:nth-child(odd) {
+   background: #F5F5F5; 
+}
+.user table thead tr  {
     background: #2196F3;
     color: white;
+    height: 65px;
+}
+#testTable table tbody tr {
+    height: 185px;
+}
+.user table tbody tr td a {
+    text-decoration: none;
 }
 .user table tbody tr {
-/*    box-shadow: 0px 0px 5px 0.5px grey;*/
-    margin: 4px;
+    margin: 1px;
     background: white;
-}
-.user table tbody tr:hover {
-    background: #BDBDBD;
-/*    border-top: 1px solid black;
-    border-bottom: 1px solid black;*/
-    margin-bottom: 2px;
 }
 .suspend.md-raised {
     color: #FDD835;
@@ -74,12 +78,50 @@ md-menu-bar {
 .leads_toolbar {
     margin-top: 8px;
 }
-.flex {
+.tbl_chkbx ._md-container {
+    top: 85%;
+}
+ .flex {
     -webkit-flex: 1 1 0%;
     -ms-flex: 1 1 0%;
     flex: 1 1 0%;
     box-sizing: border-box;
 }
+/* .flex-8 {
+    -webkit-flex: 1 1 8%;
+    -ms-flex: 1 1 8%;
+    flex: 1 1 8%;
+    box-sizing: border-box;
+}
+ .flex-9 {
+    -webkit-flex: 1 1 9%;
+    -ms-flex: 1 1 9%;
+    flex: 1 1 9%;
+    box-sizing: border-box;
+}*/
+/*.layout-row .flex-20 {
+  -webkit-flex: 1 1 20%;
+      -ms-flex: 1 1 20%;
+          flex: 1 1 20%;
+  max-width: 20%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+.layout-row .flex-33 {
+  -webkit-flex: 1 1 calc(100% / 3);
+      -ms-flex: 1 1 calc(100% / 3);
+          flex: 1 1 calc(100% / 3);
+  box-sizing: border-box;
+}
+.layout-row .flex-45 {
+  -webkit-flex: 1 1 45%;
+      -ms-flex: 1 1 45%;
+          flex: 1 1 45%;
+  max-width: 45%;
+  max-height: 100%;
+  box-sizing: border-box;
+}*/
+
 .ccode {
     z-index: 0;
 }
@@ -102,10 +144,10 @@ md-menu-bar {
     color: #dd2c00;
 }
 md-toast { 
-position: fixed;
-margin-left: 30%;
-text-align: center;
-width: 40%; 
+    position: fixed;
+    margin-left: 30%;
+    text-align: center;
+    width: 40%; 
     animation:ease,fade_out 5s;
     animation-fill-mode: both;
 }
@@ -127,13 +169,23 @@ width: 40%;
         min-width: 280px;
         width: 280px;
     }
+    .user {
+        overflow-x: hidden;
+    }
+    .user md-card {
+        overflow-x: auto;
+    }
     .user table {
         min-width: 260px;
         width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+    #testTable  thead th,#testTable  tbody th{
+        width: 130px;
     }
     .leads_bttn {
         text-transform: none;
-
     }
     md-radio-group.mrgn_btm  md-radio-button{
         margin-bottom: 16px;
@@ -146,14 +198,23 @@ width: 40%;
     }
 }
 @media all and (min-width:600px) and (max-width:960px) {
+    .user {
+        overflow-x: hidden;
+    }
+    .user md-card {
+        overflow-x: scroll;
+    }
     .user table {
         min-width: 500px;
-        width:100%;
+        width:100%;        
+    }    
+    #testTable  thead th,#testTable  tbody th{
+        width: 130px;        
     }
     md-toast{ 
         position: fixed;
         margin-left: 25%;
         text-align: center;
         width: 50%;
-    }
+    }    
 }

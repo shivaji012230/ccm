@@ -8,7 +8,7 @@ if(isset($_SESSION['user_name'])) {
 <div layout="row"  layout-align="center center" style="height:100%" >
     <div layout="column" layout-align="center center" >
         <div  layout="row" layout-align="center center" >
-            <div class="md-whiteframe-z1 lgn"  layout="column" layout-align="">
+            <div class="md-whiteframe-z1 lgn" layout="column" layout-align="">
                 <md-toolbar>
                     <div class="md-toolbar-tools">
                         Login

@@ -19,26 +19,29 @@ if(!isset($_SESSION['user_name'])) {
                 </div>
             </div>
             <div class="md-padding" ></div>
+            <div layout layout-align='space-between center' flex>
+                <md-button class="md-raised suspend " id="SuspendSelected" ng-click="accept_reject($event)">Suspend Selected</md-button>
+                <md-button class='md-raised delete' id="DeleteSelected" ng-click="accept_reject($event)">Delete Selected</md-button>
+            </div>
             <div class="user">
                 <md-card >
-<!--                    <md-card-content >-->
-                        <table>
+                        <table class="country_table">
                             <thead>
                                 <tr layout layout-align="space-between center">
-                                    <th flex="35"><h4>Name</h4></th>
-                                    <th flex="20"><h4>Level</h4></th>
-                                    <th flex="45"><h4>Options</h4></th>
+                                    <th class="flex-33"><h4>Name</h4></th>
+                                    <th class="flex-20"><h4>Level</h4></th>
+                                    <th class="flex-45"><h4>Options</h4></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="code in codess | filter:mySearch" class="md-whiteframe-1dp" layout  layout-align="space-between center" >
-                                    <td flex="33">{{code.name}}</td>
-                                    <td flex="20">{{code.dial_code}}</td>
-                                    <td flex="45" layout-sm><md-button class="md-raised suspend">suspend</md-button><md-button class="md-raised delete" ng-click="remove($index)" >delete</md-button></td>
+                                <tr ng-repeat="code in codess | filter:mySearch" class="md-whiteframe-1dp" id="{{code.id}}" layout  layout-align="space-between center" >
+                                    <td flex="10"><md-checkbox class='tbl_chkbx md-primary' ng-model="code.checked"  aria-label='checkbox'></md-checkbox></td>
+                                    <td class="flex-33">{{code.name}}</td>
+                                    <td class="flex-20">{{code.dial_code}}</td>
+                                    <td class="flex-45" layout-sm><md-button class="md-raised suspend" id="{{code.id}}"  ng-click="suspend($index,$event)">suspend</md-button><md-button class="md-raised delete" id="{{code.id}}" ng-click="delete($index,$event)" >delete</md-button></td>
                                 </tr>
                             </tbody>
                         </table>
-<!--                    </md-card-content>-->
                 </md-card>
             </div>
         </div>
