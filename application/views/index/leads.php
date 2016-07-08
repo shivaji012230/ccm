@@ -27,7 +27,7 @@ if (!isset($_SESSION['user_name'])) {
                             <th flex class="noExl" >Status</th>
                         </tr>
                     </thead>
-                    <tbody  >
+                    <tbody>
                         <tr  ng-repeat="lead in leadsJsonNew |limitTo:totalDisplayed" id="{{lead.id}}" class="md-whiteframe-1dp" layout layout-align="space-around center" >                            
                             <td flex >{{lead.user}}</td>
                             <td flex >{{lead.name}}</td>

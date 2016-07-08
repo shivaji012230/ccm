@@ -3,7 +3,6 @@
         <div layout layout-align="space-between center" flex>
             <div><h1>ccm logo</h1></div>
             <div layout layout-align="center center">
-<!--                <md-button class=" leads_bttn" href="/leads">All Leads</md-button>-->
                 <md-menu-bar layout="row" layout-xs="row">
                     <md-menu>
                         <button ng-click="$mdOpenMenu()" class="menu_cls">
@@ -21,7 +20,6 @@
                             //session_start();
                             echo $_SESSION['user_name'];
                             ?>
-<!--                            {{myCookie}}-->
                         </button>
                         <md-menu-content>
                             <md-menu-item><md-button>Profile</md-button></md-menu-item>

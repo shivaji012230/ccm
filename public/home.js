@@ -12,16 +12,12 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
         $scope.leadsJsonNew = [];
         $scope.loading = true;
         $scope.totalDisplayed = 20;
-//        $scope.loadMores = function () {
-//            $scope.totalDisplayed += 20;  
-//        };
         ccmFactory.getData("public/leads.json").success(function(data){                
             angular.forEach(data.msg,function(value,index){
                 var id = Math.floor(Math.random() * 10000);
                 $scope.leadsJsonNew[index] = value;
                 $scope.leadsJsonNew[index].id  = id;                    
-                $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
-                console.log("each time");
+                $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);                
             });                                                
         });
         $scope.loadMore = function(){            
@@ -104,10 +100,11 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                     console.log('failure');
                 });
         };
+        
         $scope.accept = function (index, event) {
             var id = event.currentTarget.id;
             var url = "approve.php";
-            $scope.leadsJson.splice(index, 1);
+            $scope.leadsJsonNew.splice(index, 1);
             $params = $.param({
                 'id': id
             });
@@ -129,7 +126,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                 });
         };
         $scope.reject = function (index, event) {
-            $scope.leadsJson.msg.splice(index, 1);
+            $scope.leadsJsonNew.splice(index, 1);
             var id = event.currentTarget.id;
             var url = "reject.php";
             $params = $.param({
@@ -152,36 +149,42 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                         console.log("Something Wrong");
                     });
         };
-        $scope.suspend = function (index, event) {
-            var url = "suspend.php";
-            var id = event.currentTarget.id;
-            $scope.codess.splice(index, 1);
-            //$scope.suspend_id = Math.floor(Math.random() * 10000);
+        $scope.suspend = function (event) {            
+            var id = event.currentTarget.id;            
+            $(".country_table tbody tr ").each(function(){                
+                if($(this).attr('id') === id){                    
+                    $(this).remove();
+                }
+            });
+            var url = "suspend.php";            
             $params = $.param({
                 'id': id
             });
             ccmFactory.postData($params, url)
-                    .success(function (data, status, headers, config) {
-                        $mdToast.show(
-                                $mdToast.simple({
-                                    template: "<md-toast  class='fade' id='toastId'>" +
-                                            "<span class='md-toast-text' flex > Suspended </span>" +
-                                            "</md-toast>",
-                                    position: 'bottom left',
-                                    parent: angular.element(document.querySelector('#toastContainer')),
-                                    hideDelay: 2000
-                                })
-                                );
-                    })
-                    .error(function (data, status, headers, config) {
-                        console.log("Something Wrong");
-                    });
+                .success(function (data, status, headers, config) {
+                    $mdToast.show(
+                            $mdToast.simple({
+                                template: "<md-toast  class='fade' id='toastId'>" +
+                                        "<span class='md-toast-text' flex > Suspended </span>" +
+                                        "</md-toast>",
+                                position: 'bottom left',
+                                parent: angular.element(document.querySelector('#toastContainer')),
+                                hideDelay: 2000
+                            })
+                            );
+                })
+                .error(function (data, status, headers, config) {
+                    console.log("Something Wrong");
+                });
         };
         $scope.delete = function (index, event) {
             var url = "delete.php";
-            var id = event.currentTarget.id;
-            $scope.codess.splice(index, 1);
-            //$scope.delete_id = Math.floor(Math.random() * 10000);
+            var id = event.currentTarget.id;            
+            $(".country_table tbody tr ").each(function(){                
+                if($(this).attr('id') === id){                    
+                    $(this).remove();
+                }
+            });
             $params = $.param({
                 'id': id
             });
@@ -219,21 +222,12 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
 app.directive("whenScrolled",function($document){
     return {        
         link:function(scope,elem,attrs){
-            raw = elem[0];
-            console.log(elem);
-            console.log(raw);
-            $document.bind('scroll',function(){
-//                console.log("shivaji");
-//                console.log(elem.length);
-                console.log(angular.element(document.querySelector(".footer"))[0].scrollHeight);
-                if(raw.scrollTop+raw.offsetHeight >= raw.scrollHeight-200){
-                    console.log(raw.scrollTop);
-                    console.log(raw.offsetHeight);
-                    console.log(raw.scrollHeight);                                        
+            raw = elem[0];            
+            $document.bind('scroll',function(){            
+                if(raw.scrollTop+raw.offsetHeight >= raw.scrollHeight-200){                                                            
                     scope.$apply(attrs.whenScrolled);                    
                 }
-            });
-            //console.log(raw.scrollHeight);
+            });            
         }
     };
 });
@@ -330,15 +324,15 @@ app.controller("DialogController", ['$scope', 'ccmFactory', '$mdDialog', '$http'
                 'rcp_level': rcp.rcp_level
             });
             ccmFactory.postData($params, url)
-                    .success(function (data, status, headers, config) {
-                        $mdDialog.cancel();
-                        $timeout(function () {
-                            $mdToast.show($scope.toast);
-                        }, 100);
-                    })
-                    .error(function (data, status, headers, config) {
-                        console.log("Data Not Inserted");
-                    });
+                .success(function (data, status, headers, config) {
+                    $mdDialog.cancel();
+                    $timeout(function () {
+                        $mdToast.show($scope.toast);
+                    }, 100);
+                })
+                .error(function (data, status, headers, config) {
+                    console.log("Data Not Inserted");
+                });
         };
         $scope.leadsFormData = function (leads, event) {
             var url = event.target.id;

@@ -38,7 +38,7 @@ if(!isset($_SESSION['user_name'])) {
                                     <td flex="10"><md-checkbox class='tbl_chkbx md-primary' ng-model="code.checked"  aria-label='checkbox'></md-checkbox></td>
                                     <td class="flex-33">{{code.name}}</td>
                                     <td class="flex-20">{{code.dial_code}}</td>
-                                    <td class="flex-45" layout-sm><md-button class="md-raised suspend" id="{{code.id}}"  ng-click="suspend($index,$event)">suspend</md-button><md-button class="md-raised delete" id="{{code.id}}" ng-click="delete($index,$event)" >delete</md-button></td>
+                                    <td class="flex-45" layout-sm><md-button class="md-raised suspend" id="{{code.id}}"  ng-click="suspend($event)">suspend</md-button><md-button class="md-raised delete" id="{{code.id}}" ng-click="delete($index,$event)" >delete</md-button></td>
                                 </tr>
                             </tbody>
                         </table>

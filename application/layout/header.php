@@ -24,9 +24,6 @@
         
         <!-- Custom Js -->
         <script type="text/javascript" src="./public/home.js"></script>
-<!--        <script src="https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js" type="text/javascript"></script>-->
-        <script src="./public/jquery.table2excel.js"></script>
-
-        
+        <script src="./public/jquery.table2excel.js"></script>        
     </head>
     <body ng-controller="ccm_controller" when-scrolled="loadMore()">

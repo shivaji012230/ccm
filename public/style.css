@@ -5,8 +5,7 @@ body {
     line-height: 24px;    
     height: 100%;
     max-height: 100%;
-    max-width: 100%;
-    
+    max-width: 100%;    
 }
 .lgn {
     min-width: 400px;
@@ -80,47 +79,12 @@ md-menu-bar {
 .tbl_chkbx ._md-container {
     top: 85%;
 }
- .flex {
+.flex {
     -webkit-flex: 1 1 0%;
     -ms-flex: 1 1 0%;
     flex: 1 1 0%;
     box-sizing: border-box;
 }
-/* .flex-8 {
-    -webkit-flex: 1 1 8%;
-    -ms-flex: 1 1 8%;
-    flex: 1 1 8%;
-    box-sizing: border-box;
-}
- .flex-9 {
-    -webkit-flex: 1 1 9%;
-    -ms-flex: 1 1 9%;
-    flex: 1 1 9%;
-    box-sizing: border-box;
-}*/
-/*.layout-row .flex-20 {
-  -webkit-flex: 1 1 20%;
-      -ms-flex: 1 1 20%;
-          flex: 1 1 20%;
-  max-width: 20%;
-  max-height: 100%;
-  box-sizing: border-box;
-}
-.layout-row .flex-33 {
-  -webkit-flex: 1 1 calc(100% / 3);
-      -ms-flex: 1 1 calc(100% / 3);
-          flex: 1 1 calc(100% / 3);
-  box-sizing: border-box;
-}
-.layout-row .flex-45 {
-  -webkit-flex: 1 1 45%;
-      -ms-flex: 1 1 45%;
-          flex: 1 1 45%;
-  max-width: 45%;
-  max-height: 100%;
-  box-sizing: border-box;
-}*/
-
 .ccode {
     z-index: 0;
 }
