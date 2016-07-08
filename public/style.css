@@ -2,15 +2,14 @@
 body {
     font-size: 14px;
     font-family: "noto";
-    line-height: 24px;
+    line-height: 24px;    
+    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    
 }
 .lgn {
     min-width: 400px;
-}
-.user table  {
-/*    border: 1px solid black;*/
-/*    border-collapse: collapse;*/
-/*    padding: 5px;*/
 }
 .user table {
     min-width: 700px;
@@ -170,16 +169,16 @@ md-toast {
         width: 280px;
     }
     .user {
-        overflow-x: hidden;
+        overflow: auto;
     }
-    .user md-card {
-        overflow-x: auto;
+    .user div {
+        overflow: auto;
     }
     .user table {
         min-width: 260px;
         width: 100%;
         display: block;
-        overflow-x: auto;
+        overflow: auto;
     }
     #testTable  thead th,#testTable  tbody th{
         width: 130px;
@@ -199,10 +198,10 @@ md-toast {
 }
 @media all and (min-width:600px) and (max-width:960px) {
     .user {
-        overflow-x: hidden;
+        overflow: auto;
     }
-    .user md-card {
-        overflow-x: scroll;
+    .user div {
+        overflow: auto;
     }
     .user table {
         min-width: 500px;

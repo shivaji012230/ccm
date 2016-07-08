@@ -29,4 +29,4 @@
 
         
     </head>
-    <body ng-controller="ccm_controller" >
+    <body ng-controller="ccm_controller" when-scrolled="loadMore()">

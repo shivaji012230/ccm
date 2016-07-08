@@ -4,32 +4,31 @@ if (!isset($_SESSION['user_name'])) {
     header("Location:/login");
 }
 ?>
-<div layout="column" layout-align="space-between stretch" class="minhgt">
-    <md-content>
-        
+<div layout="column" layout-align="space-between stretch" class="minhgt" >
+    <md-content>        
         <div class="user md-padding" >
             <div layout layout-xs="column" layout-align="end center">
                 <md-button class=" md-primary" ng-click="addNewLead()">NEW LEAD</md-button>
-                <md-button class=" md-primary"  ng-click="exportData()">EXPORT TO EXCEL</md-button>                
+                <md-button class=" md-primary" ng-click="exportData()">EXPORT TO EXCEL</md-button>                
             </div>
-            <md-card id="exportable">
-                <table class="country_table" id="testTable">
+            <div id="exportable" >
+                <table class="country_table" id="testTable" >
                     <thead>
-                        <tr layout layout-align="space-around center" >                            
+                        <tr layout layout-align="space-around center">                            
                             <th flex >Lead Owner</th>
                             <th flex >Customer Name</th>
                             <th flex >Phone Number</th>
-                            <th flex="15" >Address</th>
+                            <th flex="15">Address</th>
                             <th flex >Occupation</th>
                             <th flex >Occupation details</th>
-                            <th flex="15"  >Business Details</th>
+                            <th flex="15">Business Details</th>
                             <th flex >PAN Number</th>
                             <th flex >Aadhar Number</th>
                             <th flex class="noExl" >Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr  ng-repeat="lead in leadsJson.msg" id="{{lead.id}}" class="md-whiteframe-1dp" layout layout-align="space-around center" >                            
+                    <tbody  >
+                        <tr  ng-repeat="lead in leadsJsonNew |limitTo:totalDisplayed" id="{{lead.id}}" class="md-whiteframe-1dp" layout layout-align="space-around center" >                            
                             <td flex >{{lead.user}}</td>
                             <td flex >{{lead.name}}</td>
                             <td flex >{{lead.phone}}</td>
@@ -51,11 +50,11 @@ if (!isset($_SESSION['user_name'])) {
                                 <a class="md-primary" href="" id="{{lead.id}}" ng-click="reject($index,$event)">Reject</a>
                             </td>
                         </tr>
-
-                    </tbody>
+                        
+                    </tbody>                    
                 </table>
-            </md-card>
-
+                
+            </div>
         </div>
 
         <div class="md-padding"></div>

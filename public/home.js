@@ -8,15 +8,25 @@ app.config(function ($mdThemingProvider) {
             .accentPalette('orange');
 });
 
-app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','$mdToast', '$timeout', '$window', function ($scope, $mdDialog, $http, ccmFactory, $mdToast, $timeout, $window) {
-        ccmFactory.getData("public/leads.json",{fname:'fname',lname:'lname'}).success(function(data){                        
-            $scope.leadsJson = data;
-            for (i = 0; i < Object.keys($scope.leadsJson.msg).length; i++) {
+app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','$mdToast', function ($scope, $mdDialog, $http, ccmFactory, $mdToast) {
+        $scope.leadsJsonNew = [];
+        $scope.loading = true;
+        $scope.totalDisplayed = 20;
+//        $scope.loadMores = function () {
+//            $scope.totalDisplayed += 20;  
+//        };
+        ccmFactory.getData("public/leads.json").success(function(data){                
+            angular.forEach(data.msg,function(value,index){
                 var id = Math.floor(Math.random() * 10000);
-                $scope.leadsJson.msg[i].id = id;
-                $scope.leadsJson.msg[i].biz = JSON.parse($scope.leadsJson.msg[i].biz);
-            }
+                $scope.leadsJsonNew[index] = value;
+                $scope.leadsJsonNew[index].id  = id;                    
+                $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
+                console.log("each time");
+            });                                                
         });
+        $scope.loadMore = function(){            
+            $scope.totalDisplayed += 20;
+        };        
         ccmFactory.getData("public/countryCodes.json",{fname:'fname',lname:'lname'}).success(function(data){          
            $scope.codess = data;
            for (i = 0; i < Object.keys($scope.codess).length; i++) {
@@ -97,7 +107,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
         $scope.accept = function (index, event) {
             var id = event.currentTarget.id;
             var url = "approve.php";
-            $scope.leadsJson.msg.splice(index, 1);
+            $scope.leadsJson.splice(index, 1);
             $params = $.param({
                 'id': id
             });
@@ -192,8 +202,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                         console.log("Something Wrong");
                     });
 
-        };
-        
+        };        
         $scope.exportData = function () {
             $(".country_table").table2excel({
                 exclude: ".noExl",
@@ -202,16 +211,32 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                 fileext: ".xls"
             });
         };
-
-        angular.element(document).ready(function () {
-
-        });    
-
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
 
     }]);
+app.directive("whenScrolled",function($document){
+    return {        
+        link:function(scope,elem,attrs){
+            raw = elem[0];
+            console.log(elem);
+            console.log(raw);
+            $document.bind('scroll',function(){
+//                console.log("shivaji");
+//                console.log(elem.length);
+                console.log(angular.element(document.querySelector(".footer"))[0].scrollHeight);
+                if(raw.scrollTop+raw.offsetHeight >= raw.scrollHeight-200){
+                    console.log(raw.scrollTop);
+                    console.log(raw.offsetHeight);
+                    console.log(raw.scrollHeight);                                        
+                    scope.$apply(attrs.whenScrolled);                    
+                }
+            });
+            //console.log(raw.scrollHeight);
+        }
+    };
+});
 app.directive('dateValidation', function () {
     return {
         require: 'ngModel',
@@ -240,13 +265,13 @@ app.directive('dateValidation', function () {
 app.factory('ccmFactory', ['$http', function ($http) {
         $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
         return {
-            getData: function (url,data) {
-                var getParams = Object.keys(data).map(function(param){
-            return encodeURIComponent(param) + '=' + encodeURIComponent(data[param]);
-        }).join('&');
+            getData: function (url) {
+//                var getParams = Object.keys(data).map(function(param){
+//            return encodeURIComponent(param) + '=' + encodeURIComponent(data[param]);
+//        }).join('&');
                 return $http({
                     method: "GET",
-                    url: '/'+url+'?'+getParams
+                    url: '/'+url
                 });
             },
             postData: function (data, url) {
