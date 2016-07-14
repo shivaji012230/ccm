@@ -9,9 +9,17 @@ app.config(function ($mdThemingProvider) {
 });
 
 app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','$mdToast', function ($scope, $mdDialog, $http, ccmFactory, $mdToast) {
+        $scope.user = 'shivaji';
+        $scope.pw1 = 'password';
         $scope.leadsJsonNew = [];
         $scope.loading = true;
         $scope.totalDisplayed = 20;
+        $scope.imagePath = "images/myPic.jpg";
+        $scope.security = {'username':'shivaji','password':''};
+        ccmFactory.getData("public/users.json").success(function(data){                
+            $scope.userDetails = data;
+            console.log("upper");
+        });
         ccmFactory.getData("public/leads.json").success(function(data){                
             angular.forEach(data.msg,function(value,index){
                 var id = Math.floor(Math.random() * 10000);
@@ -55,7 +63,30 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                 controller: 'DialogController'
             });
         };
-
+        $scope.generalProfileEdit = function (){
+            $mdDialog.show({
+                templateUrl: '/partials/generaledit',
+                clickOutsideToClose: false,
+                escapeToClose: false,
+                controller: 'DialogController'
+            });
+        };
+        $scope.contactProfileEdit = function (){
+            $mdDialog.show({
+                templateUrl: '/partials/contactedit',
+                clickOutsideToClose: false,
+                escapeToClose: false,
+                controller: 'DialogController'
+            });
+        };
+        $scope.securityProfileEdit = function (){
+            $mdDialog.show({
+                templateUrl: '/partials/securityedit',
+                clickOutsideToClose: false,
+                escapeToClose: false,
+                controller: 'DialogController'
+            });
+        };
         $scope.toast = $mdToast.simple({
             templateUrl: "/partials/toast",
             position: 'bottom left',
@@ -99,8 +130,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                 .error(function () {
                     console.log('failure');
                 });
-        };
-        
+        };        
         $scope.accept = function (index, event) {
             var id = event.currentTarget.id;
             var url = "approve.php";
@@ -177,7 +207,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$http", 'ccmFactory','
                     console.log("Something Wrong");
                 });
         };
-        $scope.delete = function (index, event) {
+        $scope.delete = function (event) {
             var url = "delete.php";
             var id = event.currentTarget.id;            
             $(".country_table tbody tr ").each(function(){                
@@ -255,7 +285,25 @@ app.directive('dateValidation', function () {
         }
     };
 });
-
+app.directive('pwdCheck',function(){
+    return {
+        require: 'ngModel',
+        link: function(scope,elem,attrs,ctrl) {
+            
+            var firstPassword = '#' + attrs.pwdCheck;
+            console.log(firstPassword);
+            
+            $(elem).add(firstPassword).on('keyup', function () {
+                scope.$apply(function () {
+//                    console.log(elem.val());
+//                    console.log($(firstPassword).val());
+//                     console.info(elem.val() === $(firstPassword).val());
+                    ctrl.$setValidity('pwmatch', elem.val() === scope[attrs.pwdCheck]);
+                });
+            });
+        }
+    };
+});
 app.factory('ccmFactory', ['$http', function ($http) {
         $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
         return {
@@ -278,7 +326,8 @@ app.factory('ccmFactory', ['$http', function ($http) {
         };
     }]);
 app.controller("DialogController", ['$scope', 'ccmFactory', '$mdDialog', '$http', '$timeout', '$mdToast', function ($scope, ccmFactory, $mdDialog, $http, $timeout, $mdToast) {
-
+        $scope.user = 'shivaji';
+        $scope.pw1 = 'password';
         $scope.username = "";
         $scope.items = [{"name": "Self Employeed"}, {"name": 'Employee'}, {"name": 'Professional'}];
         $scope.leads = {"customer_name": "", "customer_addr": "", "select_customer": "", "self_emp": "",
@@ -288,6 +337,14 @@ app.controller("DialogController", ['$scope', 'ccmFactory', '$mdDialog', '$http'
         $scope.emp = {"emp_name": "", "emp_email": "", "mobileNo": "", "emp_addr": "", "emp_level": ""};
         $scope.rcp = {"rcp_name": "", "rcp_email": "", "mobileNo": "", "rcp_addr": "", "rcp_level": ""};
         $scope.dialcode = "+91";
+        ccmFactory.getData("public/users.json").success(function(data){                
+            $scope.userDetails = data;
+//            console.log("lower");
+        });
+//        ccmFactory.getData("public/countryCodes.json").success(function(data){                
+//            $scope.codes = data;
+//            //console.log("lower");
+//        });
         $scope.toast = $mdToast.simple({
             templateUrl: "/partials/toast",
             position: 'bottom left',
@@ -364,11 +421,53 @@ app.controller("DialogController", ['$scope', 'ccmFactory', '$mdDialog', '$http'
                         console.log("Data Not Inserted");
                     });
         };
-
+        $scope.generalEditProfile = function(userDetails,event){
+            var url = event.currentTarget.id;
+            $params = $.param({
+                'username':userDetails.msg[0].name,
+                'pancard':userDetails.msg[0].pan
+            });
+            ccmFactory.postData($params,url)
+                    .success(function(data,status,headers,config){
+                        $mdDialog.cancel();
+                    })
+                    .error(function(){
+                        console.log("Data Not Inserted");
+                    });
+        };
+        $scope.contactEditProfile = function(userDetails,event){
+            var url = event.currentTarget.id;
+            $params = $.param({
+                'user_email':userDetails.msg[0].email,
+                'phone':$scope.dialcode + userDetails.msg[0].phone,
+                'address':userDetails.msg[0].addr
+            });
+            ccmFactory.postData($params,url)
+                    .success(function(data,status,headers,config){
+                        $mdDialog.cancel();
+                    })
+                    .error(function(){
+                        console.log("Data Not Inserted");
+                    });
+        };
+        $scope.securityEditProfile = function(event){
+            var url = event.currentTarget.id;
+            $params = $.param({
+                'user_id':$scope.user,
+                'password':$scope.pw1
+            });
+            ccmFactory.postData($params,url)
+                    .success(function(){
+                        $mdDialog.cancel();
+                    })
+                    .error(function(){
+                        console.log("Data Not Inserted");
+                    });
+        };
         $scope.countryDialCode = function () {
             $timeout(function () {
-                ccmFactory.getData(function (countryJson) {
-                    $scope.codes = countryJson;
+                ccmFactory.getData("public/countryCodes.json").success(function(data){                
+                    $scope.codes = data;            
                 });
             }, 100);
         };
@@ -391,7 +490,9 @@ app.controller("DialogController", ['$scope', 'ccmFactory', '$mdDialog', '$http'
             $scope.leadsfrm.$setUntouched();
         };
         $scope.dialCode = function (ccode) {
+            console.log(ccode);
             $scope.dialcode = ccode.dial_code;
+            console.log($scope.dialcode);
             document.getElementById("ccode_afterselect").innerHTML = ccode.dial_code;
         };
         $scope.aadhar = function () {

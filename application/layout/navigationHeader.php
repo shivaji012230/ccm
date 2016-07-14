@@ -1,7 +1,7 @@
-<md-toolbar >
+<md-toolbar class="hdrtlbr">
     <div class="md-toolbar-tools" id="toastContainer" >
-        <div layout layout-align="space-between center" flex>
-            <div><h1>ccm logo</h1></div>
+        <div layout layout-align="space-between center" class="logo" flex>
+            <h1>ccm logo</h1>
             <div layout layout-align="center center">
                 <md-menu-bar layout="row" layout-xs="row">
                     <md-menu>
@@ -22,7 +22,7 @@
                             ?>
                         </button>
                         <md-menu-content>
-                            <md-menu-item><md-button>Profile</md-button></md-menu-item>
+                            <md-menu-item><md-button href="/profile">Profile</md-button></md-menu-item>
                             <md-menu-item><md-button href="logout.php">Logout</md-button></md-menu-item>
                         </md-menu-content>
                     </md-menu>

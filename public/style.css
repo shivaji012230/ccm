@@ -1,11 +1,11 @@
 
 body {
-    font-size: 14px;
-    font-family: "noto";
+    font-size: 16px;
+    font-family: 'noto';
     line-height: 24px;    
     height: 100%;
     max-height: 100%;
-    max-width: 100%;    
+    max-width: 100%;  
 }
 .lgn {
     min-width: 400px;
@@ -127,7 +127,54 @@ md-toast {
 .menu_cls.active {
     color: black;
 }
+#prfPic {
+    border-radius: 50%;
+    margin: 0px 10px;
+    position: absolute;
+    top: 85px;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+}
+.prfPrntDiv {
+    margin-top: 40px;
+}
+.md-button.md-icon-button.edit {
+    margin: 9px 6px;
+}
+.prflPrntDiv {
+    height: 100%;
+}
+.editImg {
+    width: 18px;
+}
+.subhead {
+    font-size: 1.25em;
+}
+h3.dighead {
+    font-size: 1em;
+}
+p span {
+    font-size: 1.125em;
+    font-weight: 500;
+}
+.hdrtlbr {
+    font-size: 1.25em;
+}
+#toastContainer.md-toolbar-tools {
+    font-size: 1.25em;
+}
+ .logo h1{
+    font-size: 1em !important;
+}
+.empTbl thead tr th,.empTbl tbody tr td,.rcpTbl thead tr th,.rcpTbl tbody tr td,.leadstbl thead tr th,.leadstbl tbody tr td{
+    font-size: 1.125em;
+}
 @media all and (max-width:600px) {
+    body {
+        font-size: 12px;        
+        line-height: 15px;                     
+    }
     .lgn {
         min-width: 280px;
         width: 280px;
@@ -159,8 +206,36 @@ md-toast {
         text-align: center;
         width: 50%;
     }
+    #prfPic {
+        border-radius: 50%;
+        margin: 0px 7px;
+        position: absolute;
+        top: 62px;
+        width: 67px;
+        height: 67px;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    }
+    .prfPrntDiv {
+        margin-top: 45px;
+    }
+    .mrgn_bttm {
+    margin-bottom: 10px;
+    }
+    .prflPrntDiv {
+    height: auto;
+    }
+    .editImg {
+        width: 15px;
+    }
+    .md-button.md-icon-button.edit {
+        margin: 0px 6px;
+    }
 }
 @media all and (min-width:600px) and (max-width:960px) {
+    body {
+        font-size: 14px;        
+        line-height: 20px;            
+    }
     .user {
         overflow: auto;
     }
@@ -179,5 +254,69 @@ md-toast {
         margin-left: 25%;
         text-align: center;
         width: 50%;
+    }
+    .mrgn_bttm {
+    margin-bottom: 20px;
+    }
+    #prfPic {
+        border-radius: 50%;
+        margin: 0px 10px;
+        position: absolute;
+        top: 58px;
+        width: 80px;
+        height: 80px;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    }
+    .prfPrntDiv {
+        padding-top: 23px;
+    }
+    .prfPrntDiv {
+        margin-top: 40px;
+    }
+    .prflPrntDiv {
+        height: auto;
+    }
+}
+@media all and (min-width:960px) and (max-width:1280px) {
+   body {
+        font-size: 16px;        
+        line-height: 24px;            
+    }
+    #prfPic {
+        border-radius: 50%;
+        margin: 0px 10px;
+        position: absolute;
+        top: 100px;
+        width: 90px;
+        height: 90px;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    }
+    .prflPrntDiv {
+        height: 100%;
+    }
+}
+@media all and (min-width:1367px) and (max-width:1920px) {
+    body {
+        font-size: 16px;
+        font-family: "noto";
+        line-height: 24px;    
+        height: 100%;
+        max-height: 100%;
+        max-width: 100%;  
+    }
+    #prfPic {
+        border-radius: 50%;
+        margin: 0px 10px;
+        position: absolute;
+        top: 135px;
+        width: 100px;
+        height: 100px;
+        box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
     }    
+    .prfPrntDiv {
+        margin-top: 40px;
+    }
+    .prflPrntDiv {
+        height: 100%;
+    }
 }

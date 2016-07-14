@@ -1,0 +1,164 @@
+{
+    "status": 1,
+    "msg": [{
+            "uid": "0c905d4c3415697021c47e3cb4cd32da",
+            "name": "Asif Shahid",
+            "id": "9627555743",
+            "phone": "9627555743",
+            "email": "asif.shahid@cconnectmarket.com",
+            "addr": "472\/1 sultanpura agra cantt AGAR 282001 UP",
+            "status": "-1",
+            "pan": "CZUPS8995R",
+            "lvl": "2"
+        }, {
+            "uid": "15fd47e04142d1aac0268fbc91ac6729",
+            "name": "K.kiran",
+            "id": "8712244931",
+            "phone": "8712244931",
+            "email": "k.kiran@cconnectmarket.com",
+            "addr": "house number 14-173\/10 manchirial adlibad",
+            "status": "0",
+            "pan": "DNNPK7513M",
+            "lvl": "2"
+        }, {
+            "uid": "57cc6e443b3fcf615e547da3e7a6dd65",
+            "name": "Imran",
+            "id": "9610410559",
+            "phone": "9610410559",
+            "email": "imran.chitera@cconnectmarket.com",
+            "addr": "Malviya Nagar",
+            "status": "1",
+            "pan": "AEPPC2575r",
+            "lvl": "4"
+        }, {
+            "uid": "6689db42848596c42e6d705b30d65362",
+            "name": "N V ramana Reddy",
+            "id": "9949097975",
+            "phone": "9949097975",
+            "email": "ramana.reddy@cconnectmarket.com",
+            "addr": "216 street 1venkatadri township 1st Phase Nampally hyderabad 501301",
+            "status": "1",
+            "pan": "ADYPN7913N",
+            "lvl": "2"
+        }, {
+            "uid": "6ed92f70ab3a7c7c80540b3ab4f4a322",
+            "name": "Hemendra Shukla",
+            "id": "9785198389",
+            "phone": "9785198389",
+            "email": "hemendra17884@gmail.com",
+            "addr": "Vaishali Nagar Jaipur",
+            "status": "1",
+            "pan": "AHBPH49468",
+            "lvl": "2"
+        }, {
+            "uid": "841afaf16dac5823a00c69abf606b5c8",
+            "name": "Manoj Vaishnav",
+            "id": "9509482848",
+            "phone": "9509482848",
+            "email": "manoj.vaishnav@cconnectmarket.com",
+            "addr": "68\/34 heerpath mansarovar jaipur 302020",
+            "status": "1",
+            "pan": "ATXPV0268M",
+            "lvl": "2"
+        }, {
+            "uid": "92c34a5f0f87a21a8e7a5b8eff37c3bd",
+            "name": "PNVLN murthy",
+            "id": "8885156767",
+            "phone": "8885156767",
+            "email": "P.muthy@cconnectmarket.com",
+            "addr": "304 sai residency rk puram Kothapet Hyderabad",
+            "status": "0",
+            "pan": "BWFPM4190R",
+            "lvl": "2"
+        }, {
+            "uid": "94aabaed2823ec0f476fb82d6279b5ff",
+            "name": "P vishnath reddy",
+            "id": "9700315167",
+            "phone": "9700315167",
+            "email": "viswanath.reddy@cconnectmarket.com",
+            "addr": "5-9-128c samrath complex saifabad hyderabad 500004",
+            "status": "1",
+            "pan": "AVCPV9787E",
+            "lvl": "2"
+        }, {
+            "uid": "97f5ecd99765d9ac72f633ca81004112",
+            "name": "S.Srinivasulu",
+            "id": "9030522633",
+            "phone": "9030522633",
+            "email": "s.srinivasulu@cconnectmarket.com",
+            "addr": "Plot No:400, Kakatiya Nagar, Neredmet, Secundrabad-56",
+            "status": "1",
+            "pan": "AITPC1133B",
+            "lvl": "2"
+        }, {
+            "uid": "a3d427333e9b23f20d146385d5efcb4d",
+            "name": "Sairam Raju",
+            "id": "9949013338",
+            "phone": "9949013338",
+            "email": "coregroup1@gmail.com",
+            "addr": "Hyderabad",
+            "status": "1",
+            "pan": "ASIPS2118M",
+            "lvl": "4"
+        }, {
+            "uid": "a6fa145abccf15cd0e1c7e962a7935ea",
+            "name": "Satish Kumar",
+            "id": "9948983078",
+            "phone": "9948983078",
+            "email": "sm@kahaniya.com",
+            "addr": "Nagole",
+            "status": "1",
+            "pan": "123456789654",
+            "lvl": "4"
+        }, {
+            "uid": "c5f40017d7c9667cc15080dcd36f5a9d",
+            "name": "Manoj Kashyap",
+            "id": "7503334445",
+            "phone": "7503334445",
+            "email": "manoj.kashyap@cconnectmarket.com",
+            "addr": "E-51, Shiv Enclave Dichaon Road Najafgarh, New Delhi -110043",
+            "status": "1",
+            "pan": "ARSPK4485G",
+            "lvl": "2"
+        }, {
+            "uid": "d01bf9038fad1464369d4aceb331ca52",
+            "name": "Asif Shahid",
+            "id": "8587963715",
+            "phone": "8587963715",
+            "email": "asif.shahid@cconnectmarket.com",
+            "addr": "472\/1 Sultanpura Agra Cantt, Agra-282001 UP",
+            "status": "1",
+            "pan": "CZUPS8995S",
+            "lvl": "2"
+        }, {
+            "uid": "dce524917e6c736cb9341ad791a7dde2",
+            "name": "Vijaya Jyothi",
+            "id": "9951907704",
+            "phone": "9951907704",
+            "email": "vvjyothi95@gmail.com",
+            "addr": "14 panchansheela towers",
+            "status": "1",
+            "pan": "AYOPV5169R",
+            "lvl": "2"
+        }, {
+            "uid": "e6fda0f0d3e0adfff69e334462d1ef6a",
+            "name": "Pallav Bajjuri",
+            "id": "9160044559",
+            "phone": "9160044559",
+            "email": "pallav@kahaniya.com",
+            "addr": "Hyd",
+            "status": "1",
+            "pan": "ASDF",
+            "lvl": "8"
+        }, {
+            "uid": "ea3440eec32d4407396bdeaf7826eeb8",
+            "name": "Praveen Kumar Reddy",
+            "id": "9666293537",
+            "phone": "9666293537",
+            "email": "praveen9at@gmail.com",
+            "addr": "Raghavaraju Palli Kolimigundala madal Kurnool",
+            "status": "1",
+            "pan": "BOBPA2167N",
+            "lvl": "2"
+        }]
+}

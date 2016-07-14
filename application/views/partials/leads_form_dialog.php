@@ -99,8 +99,8 @@
                             </div>  
                         </md-input-container>
                         <div layout="row" layout-align="start start">
-                            <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)">
-                                <md-option  ng-repeat="code in codes" value="{{code.name}}-{{code.dial_code}}">{{code.name}}{{code.dial_code}}</md-option>
+                            <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)" md-on-open='countryDialCode()'>
+                                <md-option  ng-repeat="code in codes" ng-value="code">{{code.name}}{{code.dial_code}}</md-option>
                             </md-select>
                             <span id="ccode_afterselect">+91</span>
                             <md-input-container class="md-block mblno_container" md-is-error="leadsfrm.mobileNo.$invalid && (leadsfrm.$submitted || leadsfrm.mobileNo.$dirty)">

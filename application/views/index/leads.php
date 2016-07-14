@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_name'])) {
                 <md-button class=" md-primary" ng-click="exportData()">EXPORT TO EXCEL</md-button>                
             </div>
             <div id="exportable" >
-                <table class="country_table" id="testTable" >
+                <table class="country_table leadstbl" id="testTable" >
                     <thead>
                         <tr layout layout-align="space-around center">                            
                             <th flex >Lead Owner</th>

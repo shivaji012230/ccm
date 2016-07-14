@@ -8,7 +8,7 @@
     </div>
     <md-dialog-content >
         <div class="md-dialog-content md-padding"  layout="column" >
-            <form name="rcpfrm" id="rcpFormDetails" ng-submit="rcpfrm.$valid && rcpFormData(rcp,$event)" novalidate>
+            <form name="rcpfrm" id="rcpFormDetails" ng-submit="rcpfrm.$valid && rcpFormData(rcp, $event)" novalidate>
                 <md-input-container class="md-block" md-is-error="rcpfrm.rcp_name.$invalid && (rcpfrm.$submitted || rcpfrm.rcp_name.$dirty)">
                     <label >Name</label>
                     <input type="text" name="rcp_name" ng-required="true" ng-minlength="5" ng-maxlength="30" ng-model="rcp.rcp_name" ng-pattern="/^[a-zA-Z.\s]*$/">
@@ -28,8 +28,9 @@
                     </div>
                 </md-input-container>
                 <div layout="row" layout-align="start start">
-                    <md-select name="ccode"  class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)">
-                        <md-option  ng-repeat="code in codes" value="{{code.name}}-{{code.dial_code}}">{{code.name}}{{code.dial_code}}</md-option>
+
+                    <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)" md-on-open="countryDialCode()">
+                        <md-option  ng-repeat="code in codes" ng-value="code">{{code.name}}&nbsp;&nbsp;{{code.dial_code}}</md-option>
                     </md-select>
                     <span id="ccode_afterselect">+91</span>
                     <md-input-container class="md-block mblno_container" md-is-error="rcpfrm.mobileNo.$invalid && (rcpfrm.$submitted || rcpfrm.mobileNo.$dirty)">
@@ -68,7 +69,7 @@
                         <div ng-message="required">Please select level.</div>
                     </div>
                 </md-input-container>
-                
+
                 <md-input-container layout layout-align="end center">
                     <md-button type="submit" class=" md-primary">submit</md-button>
                     <md-button  class="md-accent" ng-click="rcpResetForm()">reset</md-button>

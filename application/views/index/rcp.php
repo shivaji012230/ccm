@@ -25,9 +25,10 @@ if(!isset($_SESSION['user_name'])) {
             <div class=" user">
                 <md-card>
 <!--                    <md-card-content>-->
-                        <table class="country_table">
+                        <table class="country_table rcpTbl">
                             <thead>
                                 <tr layout layout-align="space-between center">
+                                    <th flex="10"></th>
                                     <th flex="35"><h4>Name</h4></th>
                                     <th flex="20"><h4>Level</h4></th>
                                     <th flex="45"><h4>Options</h4></th>
@@ -38,7 +39,7 @@ if(!isset($_SESSION['user_name'])) {
                                     <td flex="10"><md-checkbox class='tbl_chkbx md-primary' ng-model="code.checked" ng-click="isChecked(code)" aria-label='checkbox'></md-checkbox></td>                                    
                                     <td flex="33">{{code.name}}</td>
                                     <td flex="20">{{code.dial_code}}</td>
-                                    <td flex="45" layout-sm><md-button class="md-raised suspend" id="{{code.id}}" ng-click="suspend($index,$event)">suspend</md-button><md-button class="md-raised delete" id="{{code.id}}" ng-click="delete($index,$event)"> delete </md-button></td>
+                                    <td flex="45" layout-sm><md-button class="md-raised suspend" id="{{code.id}}" ng-click="suspend($event)">suspend</md-button><md-button class="md-raised delete" id="{{code.id}}" ng-click="delete($event)"> delete </md-button></td>
                                 </tr>
                             </tbody>
                         </table>

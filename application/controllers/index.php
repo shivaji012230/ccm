@@ -19,7 +19,9 @@ class Index extends Controller{
   public function leads(){
     $this->view->render('index/leads');
   }
-  
+  public function profile(){
+    $this->view->render('index/profile');
+  }
   public function leadsForm(){
     $this->view->render('partials/leads_form_dialog',TRUE);
   }
@@ -30,6 +32,18 @@ class Index extends Controller{
   
   public function rcpForm(){
     $this->view->render('partials/rcp_form_dialog',TRUE);
+  }
+  
+  public function generalEditProfile(){
+    $this->view->render('partials/generalInfoEditDialog',TRUE);
+  }
+  
+  public function contactEditProfile(){
+    $this->view->render('partials/contactInfoEditDialog',TRUE);
+  }
+  
+  public function securityEditProfile(){
+    $this->view->render('partials/securityInfoEditDialog',TRUE);
   }
   
   public function toast(){

@@ -20,6 +20,9 @@ class Bootstrap {
         } elseif ($url[0] == 'leads') {
             require APP_PATH . '/controllers/index.php';
             (new Index())->leads();
+        } elseif ($url[0] == 'profile') {
+            require APP_PATH . '/controllers/index.php';
+            (new Index())->profile();
         } elseif ($url[0] == 'partials') {
             switch ($url[1]) {
                 case 'empfrm':
@@ -36,11 +39,28 @@ class Bootstrap {
                     require APP_PATH . '/controllers/index.php';
                     (new Index())->rcpForm();
                     break;
-
+                
+                case 'generaledit':
+                    require APP_PATH . '/controllers/index.php';
+                    (new Index())->generalEditProfile();
+                    break;
+                
+                case 'contactedit':
+                    require APP_PATH . '/controllers/index.php';
+                    (new Index())->contactEditProfile();
+                    break;
+                
+                case 'securityedit':
+                    require APP_PATH . '/controllers/index.php';
+                    (new Index())->securityEditProfile();
+                    break;
+                
                 case 'toast':
                     require APP_PATH . '/controllers/index.php';
                     (new Index())->toast();
                     break;
+                
+                
             }
         }
     }
