@@ -195,8 +195,10 @@ p i {
     .lgn {
         min-width: 280px;
         width: 280px;
-    }
-    
+    }    
+    .user div {
+        overflow: auto;
+    }     
     .user table {
         min-width: 260px;
         width: 100%;
@@ -242,7 +244,10 @@ p i {
     body {
         font-size: 14px;        
         line-height: 20px;            
-    }    
+    }
+    .user div {
+        overflow: auto;
+    }     
     .user table {
         min-width: 500px;
         width:100%;        
