@@ -11,7 +11,7 @@
             <form name="generalfrm" id="generalFormDetails" ng-submit="generalfrm.$valid && generalEditProfile(userDetails,$event)" novalidate>
                 <md-input-container class="md-block" md-is-error="generalfrm.emp_name.$invalid && (generalfrm.$submitted || generalfrm.emp_name.$dirty)">
                     <label>Name</label>
-                    <input type="text"  ng-required="true" ng-minlength="5" ng-maxlength="30" name="emp_name" ng-model="userDetails.msg[0].name" ng-pattern="/^[a-zA-Z\s.]*$/">
+                    <input type="text"  ng-required="true" ng-minlength="5" ng-maxlength="30" name="emp_name" ng-model="userDetails.msg[0].name" ng-pattern="/^[a-zA-Z0-9\s.]*$/">
                     <div ng-messages="generalfrm.emp_name.$error" ng-if="generalfrm.$submitted || generalfrm.emp_name.$touched" role="alert" >
                         <div ng-message="required">Please enter a name.</div>
                         <div ng-message="minlength">Name is too short</div>
@@ -19,6 +19,24 @@
                         <div ng-message="pattern">Name field not allowed special charecters except dot</div>
                     </div>
                 </md-input-container>
+                <md-datepicker name="dateField" id="dateField" ng-model="general.dob" md-placeholder="Enter date" required date-Validation></md-datepicker>
+                <div class="validation-messages" ng-messages="generalfrm.dateField.$error" ng-if="generalfrm.$submitted || generalfrm.dateField.$touched">
+                    <div ng-message="valid">The entered value is not a date!</div>
+                    <div ng-message="required">This date is required!</div>
+                </div>                
+                <div class="errClr" ng-show="generalfrm.dateField.$error.date1">This is not a valid date</div>
+                <div class="md-padding"></div>
+                <md-input-container class="md-block" md-is-error="generalfrm.gender.$invalid && (generalfrm.$submitted || generalfrm.gender.$dirty)">
+                    <label>Gender</label>
+                    <md-select name="gender" ng-required="true" ng-model="general.gender">
+                        <md-option  value="Male">Male</md-option>
+                        <md-option  value="Female">Female</md-option>
+                    </md-select>
+                    <div ng-messages="generalfrm.gender.$error" ng-if="generalfrm.$submitted || generalfrm.gender.$touched">
+                        <div ng-message="required">Please select gender.</div>
+                    </div>
+                </md-input-container>
+                <div class="md-padding"></div>
                 <md-input-container class="md-block" md-is-error="generalfrm.customer_pan.$invalid && (generalfrm.$submitted || generalfrm.customer_pan.$dirty)">
                     <label>Customer PAN Number</label>
                     <input type="text"  name="customer_pan" ng-required="true" ng-pattern="/^([A-Z]){5}([0-9]){4}([A-Z]){1}$/" ng-model="userDetails.msg[0].pan">
@@ -28,8 +46,7 @@
                     </div>
                 </md-input-container>                
                 <md-input-container layout layout-align="end center">
-                    <md-button type="submit"  class="md-primary " >save</md-button>
-<!--                    <md-button  class="md-accent " ng-click="empResetForm()">reset</md-button>-->
+                    <md-button type="submit" class="md-primary">save</md-button>
                 </md-input-container>
             </form>
         </div>

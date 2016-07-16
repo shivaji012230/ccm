@@ -30,7 +30,7 @@
                 <div layout="row" layout-align="start start">
 
                     <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)" md-on-open="countryDialCode()">
-                        <md-option  ng-repeat="code in codes" ng-value="code">{{code.name}}&nbsp;&nbsp;{{code.dial_code}}</md-option>
+                        <md-option  ng-repeat="code in codess" ng-value="code">{{code.name}}&nbsp;&nbsp;{{code.dial_code}}</md-option>
                     </md-select>
                     <span id="ccode_afterselect">+91</span>
                     <md-input-container class="md-block mblno_container" md-is-error="rcpfrm.mobileNo.$invalid && (rcpfrm.$submitted || rcpfrm.mobileNo.$dirty)">
@@ -42,14 +42,7 @@
                         </div>
                     </md-input-container>
                 </div>
-                <!--            <md-input-container class="md-block" md-is-error="rcpfrm.rcp_phn.$invalid && (rcpfrm.$submitted || rcpfrm.rcp_phn.$dirty)">
-                                <label>Phone Number</label>
-                                <input type="number" name="rcp_phn" ng-required="true"  ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" ng-model="rcp.rcp_phn">
-                                <div ng-messages="rcpfrm.rcp_phn.$error" ng-if="rcpfrm.$submitted || rcpfrm.rcp_phn.$touched">
-                                    <div ng-message="required">Please enter phone number.</div>
-                                    <div ng-message="pattern">Please provide a valid 10 digit phone number.</div>
-                                </div>
-                            </md-input-container>-->
+                
                 <md-input-container class="md-block" md-is-error="rcpfrm.rcp_addr.$invalid && (rcpfrm.$submitted || rcpfrm.rcp_addr.$dirty)">
                     <label>Address</label>
                     <textarea name="rcp_addr" ng-required="true" ng-minlength="15" ng-maxlength="100" ng-model="rcp.rcp_addr"></textarea>

@@ -75,7 +75,7 @@
                             <div ng-message="required">This date is required!</div>
                         </div>
                         <div class="md-padding">{{leads.myDate | date:"MM-dd-yyyy"}}</div>
-                        <div style="color:red;" ng-show="leadsfrm.dateField.$error.date1">This is not a valid date</div>
+                        <div class="errClr" ng-show="leadsfrm.dateField.$error.date1">This is not a valid date</div>
                         <div class="md-padding"></div>
                         <div layout="column" >
                             <label class="lable_clr">Business Premises</label>
@@ -100,7 +100,7 @@
                         </md-input-container>
                         <div layout="row" layout-align="start start">
                             <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)" md-on-open='countryDialCode()'>
-                                <md-option  ng-repeat="code in codes" ng-value="code">{{code.name}}{{code.dial_code}}</md-option>
+                                <md-option  ng-repeat="code in codess" ng-value="code">{{code.name}}{{code.dial_code}}</md-option>
                             </md-select>
                             <span id="ccode_afterselect">+91</span>
                             <md-input-container class="md-block mblno_container" md-is-error="leadsfrm.mobileNo.$invalid && (leadsfrm.$submitted || leadsfrm.mobileNo.$dirty)">

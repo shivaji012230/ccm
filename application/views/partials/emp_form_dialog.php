@@ -31,7 +31,7 @@
                 <div layout="row" layout-align="start start">
                     <md-input-container class="md-block" md-is-error="empfrm.ccode.$invalid && (empfrm.$submitted || empfrm.ccode.$dirty)" >
                         <md-select name="ccode" id="code" class="ccode" aria-label="Country Code"  ng-model="dialcode" ng-change="dialCode(dialcode)" md-on-open="countryDialCode()">
-                            <md-option  ng-repeat="code in codes" ng-value="code">{{code.name}}&nbsp;&nbsp;{{code.dial_code}}</md-option>
+                            <md-option  ng-repeat="code in codess" ng-value="code">{{code.name}}&nbsp;&nbsp;{{code.dial_code}}</md-option>
                         </md-select>
                         <div ng-messages="empfrm.ccode.$error" ng-if="empfrm.$submitted || empfrm.ccode.$touched">
                             <div ng-message="required">Please select level.</div>
