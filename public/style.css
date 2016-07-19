@@ -163,8 +163,14 @@ p span {
 #toastContainer.md-toolbar-tools {
     font-size: 1.25em;
 }
- .logo h1{
+.logo h1{
     font-size: 1em !important;
+}
+#footer.md-toolbar-tools {
+    font-size: 1.25em;
+}
+.hdrtlbr .md-toolbar-tools div span{
+    font-size: 1.125em;
 }
 .empTbl thead tr th,.empTbl tbody tr td,.rcpTbl thead tr th,.rcpTbl tbody tr td,.leadstbl thead tr th,.leadstbl tbody tr td{
     font-size: 1.125em;
