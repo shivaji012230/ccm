@@ -11,7 +11,7 @@
             <form name="securityfrm" id="securityFormDetails" ng-submit="securityfrm.$valid && securityEditProfile($event)" novalidate>                
                 <md-input-container class="md-block" md-is-error="securityfrm.username.$invalid && (securityfrm.$submitted || securityfrm.username.$dirty)">
                     <label class="md-accent">username</label>
-                    <input type="text" ng-minlength="5" ng-maxlength="25" ng-required="true"  name="username" ng-model="user" ng-pattern="/^[\w\.\@]$/">
+                    <input type="text" ng-minlength="5" ng-maxlength="25" ng-required="true"  name="username" ng-model="user" ng-pattern="/^[\w\.\@]{5,25}$/">
                     <div ng-messages="securityfrm.username.$error" ng-if="securityfrm.$submitted || securityfrm.username.$touched">
                         <div ng-message="required">username is required.</div>
                         <div ng-message="maxlength">The username has to be less than 25 characters long.</div>
@@ -21,7 +21,7 @@
                 </md-input-container>
                 <md-input-container class="md-block" md-is-error="securityfrm.pw1.$invalid && (securityfrm.$submitted || securityfrm.pw1.$dirty)">
                     <label>Password</label>
-                    <input type="password" ng-maxlength="10" ng-minlength="8" ng-required="pw2"  id='pw1' name="pw1" confirm-pwd-Check="pw2" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]$/" ng-model="pw1">
+                    <input type="password" ng-maxlength="10" ng-minlength="8" ng-required="pw2"  id='pw1' name="pw1" confirm-pwd-Check="pw2" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}$/" ng-model="pw1">
                     <div ng-messages="securityfrm.pw1.$error" ng-if="securityfrm.$submitted || securityfrm.pw1.$touched">
                         <div ng-message="required">password is required.</div>
                         <div ng-message="maxlength">The password has to be less than 10 characters long.</div>

@@ -93,8 +93,9 @@ md-menu-bar {
 }
 #ccode_afterselect {
     margin-top: 30px;
-    margin-left: -60px;
+    margin-left: -67px;
     width: 50px;
+    font-size: 1.125em;
 }
 .mblno_container {
     margin-left: 10px;
@@ -111,7 +112,7 @@ md-toast {
     margin-left: 30%;
     text-align: center;
     width: 40%; 
-    animation:ease,fade_out 5s;
+    animation:ease,fade_out 3s;
     animation-fill-mode: both;
 }
 @keyframes fade_out{
@@ -171,6 +172,9 @@ p span {
 }
 .hdrtlbr .md-toolbar-tools div span{
     font-size: 1.125em;
+}
+#ccode_afterselect {
+    
 }
 .empTbl thead tr th,.empTbl tbody tr td,.rcpTbl thead tr th,.rcpTbl tbody tr td,.leadstbl thead tr th,.leadstbl tbody tr td{
     font-size: 1.125em;
@@ -239,13 +243,16 @@ p i {
         margin-top: 45px;
     }
     .mrgn_bttm {
-    margin-bottom: 10px;
+        margin-bottom: 10px;
     }
     .prflPrntDiv {
-    height: auto;
+        height: auto;
     }
-    
-    
+    #ccode_afterselect {
+        margin-top: 30px;
+        margin-left: -56px;
+        width: 45px;        
+    }
 }
 @media all and (min-width:600px) and (max-width:960px) {
     body {

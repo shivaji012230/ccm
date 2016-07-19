@@ -55,22 +55,22 @@ if (!isset($_SESSION['user_name'])) {
             </div>
             <hr style="width: 100%">
             <div layout="column">                
-                <div layout="row" layout-align="start center">
+                <div layout="row" layout-align="start start">
                     <p>
                         <i class="material-icons icon">&#xE0CD;</i>
                         <span>{{userDetails.msg[0].email}}</span>
                     </p>
                     
                 </div>                
-                <div layout="row" layout-align="start center">
+                <div layout="row" layout-align="start start">
                     <p>
                         <i class="material-icons icon">&#xE0BE;</i>
                         <span>{{dialcode}} {{userDetails.msg[0].phone}}</span>
                     </p>
                     
                 </div>
-                <div layout="row"  layout-align="start center">
-                    <p layout="row"  layout-align="start center">
+                <div layout="row"  layout-align="start start">
+                    <p layout="row"  layout-align="start start">
                         <i  class="material-icons icon">&#xE0C8;</i>
                         <span>{{userDetails.msg[0].addr}}</span>
                     </p>
@@ -87,11 +87,11 @@ if (!isset($_SESSION['user_name'])) {
             </div>
             <hr style="width: 100%">
             <div layout="column">                
-                <div layout="row" layout-align="start center" >
+                <div layout="row" layout-align="start start">
                     <p flex="30" class="flex-33"><span>Username : </span></p>
                     <p flex="70" class="flex-65"><span>{{user}}</span></p>
                 </div>
-                <div layout="row" layout-align="start center" >
+                <div layout="row" layout-align="start start">
                     <p flex="30" class="flex-33"><span>Password : </span></p>
                     <p flex="70" class="flex-65"><span>Last Update</span><span> {{stopwatch}} </span> <span>ago</span></p>
                 </div>

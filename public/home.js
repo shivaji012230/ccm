@@ -150,7 +150,8 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             $params = $.param({
                 'emp_name': emp.emp_name,
                 'emp_email': emp.emp_email,
-                'phone': $scope.dialcode + emp.mobileNo,
+                'dialcode': $scope.dialcode,
+                'phone': emp.mobileNo,
                 'emp_addr': emp.emp_addr,
                 'emp_level': emp.emp_level
             });
@@ -170,7 +171,8 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             $params = $.param({
                 'rcp_name': rcp.rcp_name,
                 'rcp_email': rcp.rcp_email,
-                'phone': $scope.dialcode + rcp.mobileNo,
+                'dialcode': $scope.dialcode,
+                'phone':rcp.mobileNo,
                 'rcp_addr': rcp.rcp_addr,
                 'rcp_level': rcp.rcp_level
             });
@@ -197,7 +199,8 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 'pos_business': leads.myDate.getMonth() + 1 + "-" + leads.myDate.getDate() + "-" + leads.myDate.getFullYear(),
                 'Owned_Returned': leads.Owned_Returned,
                 'nature_of_business': leads.nature_of_business,
-                'business_phn': $scope.dialcode + leads.mobileNo,
+                'dialcode': $scope.dialcode,
+                'business_phn':leads.mobileNo,
                 'employee': leads.employee,
                 'professional': leads.professional,
                 'customer_Annual_Income': leads.customer_Annual_Income,
@@ -226,6 +229,16 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             ccmFactory.postData($params, url)
                     .success(function (data, status, headers, config) {
                         $mdDialog.cancel();
+                        $mdToast.show(
+                                $mdToast.simple({
+                                    template: "<md-toast  class='fade' id='toastId'>" +
+                                            "<span class='md-toast-text' flex > Saved </span>" +
+                                            "</md-toast>",
+                                    position: 'bottom left',
+                                    parent: angular.element(document.querySelector('#toastContainer')),
+                                    hideDelay: 1000
+                                })
+                        );
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -235,12 +248,23 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             var url = event.currentTarget.id;
             $params = $.param({
                 'user_email': userDetails.msg[0].email,
-                'phone': $scope.dialcode + userDetails.msg[0].phone,
+                'dialcode': $scope.dialcode,
+                'phone':userDetails.msg[0].phone,
                 'address': userDetails.msg[0].addr
             });
             ccmFactory.postData($params, url)
                     .success(function (data, status, headers, config) {
                         $mdDialog.cancel();
+                        $mdToast.show(
+                                $mdToast.simple({
+                                    template: "<md-toast  class='fade' id='toastId'>" +
+                                            "<span class='md-toast-text' flex > Saved </span>" +
+                                            "</md-toast>",
+                                    position: 'bottom left',
+                                    parent: angular.element(document.querySelector('#toastContainer')),
+                                    hideDelay: 1000
+                                })
+                        );
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -257,6 +281,18 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             ccmFactory.postData($params, url)
                     .success(function () {
                         $mdDialog.cancel();
+                        $timeout(function () {
+                            $mdToast.show(
+                                $mdToast.simple({
+                                    template: "<md-toast  class='fade' id='toastId'>" +
+                                            "<span class='md-toast-text' flex > Saved </span>" +
+                                            "</md-toast>",
+                                    position: 'bottom left',
+                                    parent: angular.element(document.querySelector('#toastContainer')),
+                                    hideDelay: 1000
+                                })
+                            );
+                        }, 100);                        
                         function passwordInterval() {
                             var seconds = Math.floor((new Date() - startTime) / 1000);
                             interval = Math.floor(seconds / 3600);
@@ -405,7 +441,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                                     parent: angular.element(document.querySelector('#toastContainer')),
                                     hideDelay: 2000
                                 })
-                                );
+                        );
                     })
                     .error(function (data, status, headers, config) {
                         console.log("Something Wrong");
