@@ -25,10 +25,10 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             "customer_Annual_Income": "10-25", "customer_pan": "", "customer_aadhaar": ""};
         $scope.emp = {"emp_name": "", "emp_email": "", "mobileNo": "", "emp_addr": "", "emp_level": ""};
         $scope.rcp = {"rcp_name": "", "rcp_email": "", "mobileNo": "", "rcp_addr": "", "rcp_level": ""};
-        ccmFactory.getData("public/users.json").success(function (data) {
+        ccmFactory.getData("public/js/users.json").success(function (data) {
             $scope.userDetails = data;
         });
-        ccmFactory.getData("public/leads.json").success(function (data) {
+        ccmFactory.getData("public/js/leads.json").success(function (data) {
             angular.forEach(data.msg, function (value, index) {
                 var id = Math.floor(Math.random() * 10000);
                 $scope.leadsJsonNew[index] = value;
@@ -36,7 +36,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
             });
         });
-        ccmFactory.getData("public/countryCodes.json").success(function (data) {
+        ccmFactory.getData("public/js/countryCodes.json").success(function (data) {
             $scope.codess = data;
             for (i = 0; i < Object.keys($scope.codess).length; i++) {
                 var id = Math.floor(Math.random() * 10000);

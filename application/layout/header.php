@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- My Style Sheets -->
-        <link rel="stylesheet" type="text/css" href="./public/style.css">
+        <link rel="stylesheet" type="text/css" href="./public/css/style.css">
 
         <!-- Angular Material requires Angular.js Libraries -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
@@ -24,7 +24,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
         
         <!-- Custom Js -->
-        <script type="text/javascript" src="./public/home.js"></script>
-        <script src="./public/jquery.table2excel.js"></script>        
+        <script type="text/javascript" src="./public/js/home.js"></script>
+        <script src="./public/js/jquery.table2excel.js"></script>        
     </head>
     <body ng-controller="ccm_controller" when-scrolled="loadMore()">
