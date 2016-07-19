@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_name'])) {
 }
 ?>
 <div layout="column" class="prflPrntDiv" layout-align=''>
-    <md-white-frame  class="md-whiteframe-1dp" layout='row' layout-xs="row" layout-align="start end" layout-align-xs="start end" flex='15' >
+    <md-white-frame  class="md-whiteframe-1dp" layout='row' layout-xs="row" layout-align="start end" layout-align-xs="start end"  >
         <img id="prfPic" ng-src="images/shivaji.jpg">
         <div flex-offset="10" flex-offset-xs="30" flex-offset-sm="15" flex-offset-md="15"><h3 class="subhead">{{userDetails.msg[0].name}}</h3></div>        
     </md-white-frame>
@@ -38,8 +38,10 @@ if (!isset($_SESSION['user_name'])) {
                     </p>
                 </div>
                 <div layout="row" layout-align="start center">
-                    <p flex="30" class="flex-30"><span>Pancard : </span></p>
-                    <p flex="70" class="flex-70"><span>{{userDetails.msg[0].pan}}</span></p>
+                    <p>
+                        <i class="material-icons icon">&#xE870;</i>
+                        <span>{{userDetails.msg[0].pan}}</span>
+                    </p>                 
                 </div>
                
             </div>
@@ -67,9 +69,12 @@ if (!isset($_SESSION['user_name'])) {
                     </p>
                     
                 </div>
-                <div layout="row" layout-align="start center">
-                    <p flex="30" flex-md="25" class="flex-30"><span>Address : </span></p>
-                    <p flex="70" flex-md="75" class="flex-70"><span>{{userDetails.msg[0].addr}}</span></p>
+                <div layout="row"  layout-align="start center">
+                    <p layout="row"  layout-align="start center">
+                        <i  class="material-icons icon">&#xE0C8;</i>
+                        <span>{{userDetails.msg[0].addr}}</span>
+                    </p>
+                    
                 </div>
             </div>
         </md-white-frame>
@@ -88,7 +93,7 @@ if (!isset($_SESSION['user_name'])) {
                 </div>
                 <div layout="row" layout-align="start center" >
                     <p flex="30" class="flex-33"><span>Password : </span></p>
-                    <p flex="70" class="flex-65"><span>Last Update</span><span pwd-Updated-Time='stopwatch' > {{stopwatch}} </span> <span>ago</span></p>
+                    <p flex="70" class="flex-65"><span>Last Update</span><span> {{stopwatch}} </span> <span>ago</span></p>
                 </div>
             </div>
         </md-white-frame>

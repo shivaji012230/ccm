@@ -131,7 +131,7 @@ md-toast {
     border-radius: 50%;
     margin: 0px 10px;
     position: absolute;
-    top: 85px;
+    top: 75px;
     width: 100px;
     height: 100px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
@@ -140,7 +140,8 @@ md-toast {
     margin-top: 40px;
 }
 .prflPrntDiv {
-    height: 100%;
+    height: auto;
+    min-height: 100%;
     background: lavender;
 }
 .prflPrntDiv md-white-frame {
@@ -292,13 +293,14 @@ p i {
         border-radius: 50%;
         margin: 0px 10px;
         position: absolute;
-        top: 100px;
+        top: 83px;
         width: 90px;
         height: 90px;
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
     }
     .prflPrntDiv {
-        height: 100%;
+        height: auto;
+        min-height: 100%;
     }
 }
 @media all and (min-width:1367px) and (max-width:1920px) {
@@ -314,7 +316,7 @@ p i {
         border-radius: 50%;
         margin: 0px 10px;
         position: absolute;
-        top: 135px;
+        top: 75px;
         width: 100px;
         height: 100px;
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
@@ -323,6 +325,7 @@ p i {
         margin-top: 40px;
     }
     .prflPrntDiv {
-        height: 100%;
+        height: auto;
+        min-height: 100%;
     }
 }

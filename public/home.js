@@ -7,8 +7,7 @@ app.config(function ($mdThemingProvider) {
             })
             .accentPalette('orange');
 });
-app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactory', '$mdToast', '$timeout', function ($scope, $mdDialog, $interval, ccmFactory, $mdToast,$timeout) {
-        
+app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactory', '$mdToast', '$timeout', '$rootScope', '$filter', function ($scope, $mdDialog, $interval, ccmFactory, $mdToast, $timeout, $rootScope, $filter) {
         $scope.child = {};
         $scope.dialcode = "+91";
         $scope.dob = "25-04-1991";
@@ -27,8 +26,8 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $scope.emp = {"emp_name": "", "emp_email": "", "mobileNo": "", "emp_addr": "", "emp_level": ""};
         $scope.rcp = {"rcp_name": "", "rcp_email": "", "mobileNo": "", "rcp_addr": "", "rcp_level": ""};
         ccmFactory.getData("public/users.json").success(function (data) {
-            $scope.userDetails = data;            
-        });        
+            $scope.userDetails = data;
+        });
         ccmFactory.getData("public/leads.json").success(function (data) {
             angular.forEach(data.msg, function (value, index) {
                 var id = Math.floor(Math.random() * 10000);
@@ -44,6 +43,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 $scope.codess[i].id = id;
             }
         });
+        //$scope.foo = pwdService.foo();
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
@@ -119,9 +119,9 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 clickOutsideToClose: false,
                 escapeToClose: false,
                 controller: 'ccm_controller'
-            });            
+            });
         };
-    
+
         $scope.contactProfileEdit = function () {
             $mdDialog.show({
                 templateUrl: '/partials/contactedit',
@@ -137,34 +137,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 escapeToClose: false,
                 controller: 'ccm_controller'
             });
-            if(!$scope.stopwatch) {
-                console.log("shivaji");
-                var startTime = new Date();
-                $interval(function () {
-                    var seconds = Math.floor((new Date() - startTime) / 1000);
-                    var interval = Math.floor(seconds / 31536000);
-                    if (interval >= 1) {
-                        return $scope.stopwatch = interval + " yrs";
-                    }
-                    interval = Math.floor(seconds / 2592000);
-                    if (interval >= 1) {
-                        return $scope.stopwatch = interval + " months";
-                    }
-                    interval = Math.floor(seconds / 86400);
-                    if (interval >= 1) {
-                        return $scope.stopwatch = interval + " days";
-                    }
-                    interval = Math.floor(seconds / 3600);
-                    if (interval >= 1) {
-                        return $scope.stopwatch = interval + " hrs";
-                    }
-                    interval = Math.floor(seconds / 60);
-                    if (interval >= 1) {
-                        return $scope.stopwatch = interval + " mins";
-                    }
-                    return $scope.stopwatch = Math.floor(seconds) + " secs";
-                }, 1000);
-            }
+
         };
         $scope.toast = $mdToast.simple({
             templateUrl: "/partials/toast",
@@ -273,17 +246,52 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                         console.log("Data Not Inserted");
                     });
         };
-        $scope.securityEditProfile = function (event) {                        
+        $scope.securityEditProfile = function (event) {
             var url = event.currentTarget.id;
             $params = $.param({
                 'user_id': $scope.user,
                 'password': $scope.pw1,
                 'cPassword': $scope.pw2
             });
-            console.log("hello");
+            var startTime = new Date();
             ccmFactory.postData($params, url)
-                    .success(function () {                        
+                    .success(function () {
                         $mdDialog.cancel();
+                        function passwordInterval() {
+                            var seconds = Math.floor((new Date() - startTime) / 1000);
+                            interval = Math.floor(seconds / 3600);
+                            if (interval >= 24) {
+                                return $rootScope.stopwatch = $filter('date')(startTime, "MMM dd");
+                            }
+                            if (interval >= 2) {
+                                return $rootScope.stopwatch = interval + "hrs";
+                            }
+                            if (interval === 1) {
+                                return $rootScope.stopwatch = interval + "hr";
+                            }
+                            interval = Math.floor(seconds / 60);
+                            if (interval >= 2) {
+                                return $rootScope.stopwatch = interval + " mins";
+                            }
+                            if (interval === 1) {
+                                return $rootScope.stopwatch = interval + " min";
+                            }
+                            if (seconds > 1) {
+                                return $rootScope.stopwatch = "few secs";
+                            }
+//                            if (seconds === 1) {
+//                                return $rootScope.stopwatch = Math.floor(seconds) + " sec";
+//                            }
+                        }
+                        if ($scope.pw1 !== '') {
+                            //console.log($rootScope.promise);
+                            if (angular.isDefined($rootScope.promise)) {                                
+                                $interval.cancel($rootScope.promise);
+                                $rootScope.promise = undefined;
+                            }
+                            $rootScope.promise = $interval(passwordInterval, 1000);
+                        }
+
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -481,27 +489,34 @@ app.directive('dateValidation', function () {
         }
     };
 });
+
+
 app.directive('pwdCheck', function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, elem, attrs, ctrl) {
-            var firstPassword = '#' + attrs.pwdCheck;
-            $(elem).add(firstPassword).on('keyup', function () {
-                scope.$apply(function () {
-                    //console.log($(firstPassword).val());
-                    ctrl.$setValidity('pwmatch', $(elem).val() === $(firstPassword).val());
-                });
-            });
-        }
-    };
+  return {
+    require: 'ngModel',
+    scope: {
+      pwdCheck: '='
+    },
+    link: function(scope, element, attrs, ngModel) {
+      scope.$watch('pwdCheck', function() {
+        ngModel.$validate(); 
+      });
+      ngModel.$validators.match = function(modelValue) {
+        if (!modelValue || !scope.pwdCheck) {
+            return true;
+        }        
+        return modelValue === scope.pwdCheck;
+      };
+    }
+  };
 });
 app.factory('ccmFactory', ['$http', function ($http) {
         $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
         return {
             getData: function (url) {
-//                var getParams = Object.keys(data).map(function(param){
+//            var getParams = Object.keys(data).map(function(param){
 //            return encodeURIComponent(param) + '=' + encodeURIComponent(data[param]);
-//        }).join('&');
+//           }).join('&');
                 return $http({
                     method: "GET",
                     url: '/' + url
@@ -513,9 +528,44 @@ app.factory('ccmFactory', ['$http', function ($http) {
                     url: url,
                     data: data
                 });
+            },
+            pwdUpdate: function () {
+
             }
         };
-}]);
+    }]);
+//app.factory('pwdService', function ($interval) {
+//    var Service = {};
+//    Service.foo = function () {
+//        var startTime = new Date();
+//        $interval(function () {
+//            var seconds = Math.floor((new Date() - startTime) / 1000);
+//            var interval = Math.floor(seconds / 31536000);
+//            if (interval >= 1) {
+//                return interval + " yrs";
+//            }
+//            interval = Math.floor(seconds / 2592000);
+//            if (interval >= 1) {
+//                return interval + " months";
+//            }
+//            interval = Math.floor(seconds / 86400);
+//            if (interval >= 1) {
+//                return interval + " days";
+//            }
+//            interval = Math.floor(seconds / 3600);
+//            if (interval >= 1) {
+//                return interval + " hrs";
+//            }
+//            interval = Math.floor(seconds / 60);
+//            if (interval >= 1) {
+//                return interval + " mins";
+//            }
+//            return Math.floor(seconds) + " secs";
+//
+//        }, 1000);
+//    };
+//    return Service;
+//});
 //app.factory('ccmApp', ['$http',  function ($http) {
 //    $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
 //    var ccmData = {};
