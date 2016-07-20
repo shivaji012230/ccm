@@ -8,7 +8,7 @@
                         <button ng-click="$mdOpenMenu()" class="menu_cls">
                             Manage
                         </button>
-                        <md-menu-content>
+                        <md-menu-content class="menu_content_cls">
                             <md-menu-item><md-button href="/employee" >Employee</md-button></md-menu-item>
                             <md-menu-item><md-button href="/rcp">Rcp</md-button></md-menu-item>
                             <md-menu-item><md-button href="/leads">Leads</md-button></md-menu-item>
@@ -21,7 +21,7 @@
                             echo $_SESSION['user_name'];
                             ?>
                         </button>
-                        <md-menu-content>
+                        <md-menu-content class="menu_content_cls">
                             <md-menu-item><md-button href="/profile">Profile</md-button></md-menu-item>
                             <md-menu-item><md-button href="logout.php">Logout</md-button></md-menu-item>
                         </md-menu-content>

@@ -486,6 +486,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
+        
 
     }]);
 app.directive("whenScrolled", function ($document) {

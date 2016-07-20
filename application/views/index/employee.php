@@ -35,7 +35,7 @@ if(!isset($_SESSION['user_name'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="code in codess | filter:mySearch" class="md-whiteframe-1dp" id="{{code.id}}" layout  layout-align="space-between center" >
+                                <tr ng-repeat="code in codess | limitTo:totalDisplayed | filter:mySearch" class="md-whiteframe-1dp" id="{{code.id}}" layout  layout-align="space-between center" >
                                     <td flex="10"><md-checkbox class='tbl_chkbx md-primary' ng-model="code.checked"  aria-label='checkbox'></md-checkbox></td>
                                     <td class="flex-33">{{code.name}}</td>
                                     <td class="flex-20">{{code.dial_code}}</td>
