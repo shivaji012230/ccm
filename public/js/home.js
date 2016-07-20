@@ -42,8 +42,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 var id = Math.floor(Math.random() * 10000);
                 $scope.codess[i].id = id;
             }
-        });
-        //$scope.foo = pwdService.foo();
+        });        
         $scope.cancel = function () {
             $mdDialog.cancel();
         };

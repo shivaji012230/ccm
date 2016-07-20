@@ -1,7 +1,8 @@
 
-body {
+body {    
+    font-family: 'Roboto',sans-serif;
     font-size: 16px;
-    font-family: 'noto';
+    font-weight: normal;
     line-height: 24px;    
     height: 100%;
     max-height: 100%;
@@ -95,7 +96,7 @@ md-menu-bar {
     margin-top: 30px;
     margin-left: -67px;
     width: 50px;
-    font-size: 1.125em;
+    font-size: 1.0625em;
 }
 .mblno_container {
     margin-left: 10px;
@@ -123,7 +124,7 @@ md-toast {
     color: white;
 }
 .menu_cls:hover{
-    color: black;
+    background:  #1E88E5;
 }
 .menu_cls.active {
     color: black;
@@ -155,7 +156,7 @@ h3.dighead {
     font-size: 1em;
 }
 p span {
-    font-size: 1.125em;
+    font-size: 1.0625em;
     font-weight: 500;
 }
 .hdrtlbr {
@@ -171,13 +172,10 @@ p span {
     font-size: 1.25em;
 }
 .hdrtlbr .md-toolbar-tools div span{
-    font-size: 1.125em;
-}
-#ccode_afterselect {
-    
+    font-size: 1.0625em;
 }
 .empTbl thead tr th,.empTbl tbody tr td,.rcpTbl thead tr th,.rcpTbl tbody tr td,.leadstbl thead tr th,.leadstbl tbody tr td{
-    font-size: 1.125em;
+    font-size: 1.0625em;
 }
 .errClr {
     color:rgb(221,44,0);
@@ -185,18 +183,22 @@ p span {
 p i {
     margin-right: 8px;
 }
+
 .icon {
     color: #9E9E9E;
     vertical-align: bottom;
 }
-.icon.md-dark {
+.material-icons.md-dark {
     color: rgba(0, 0, 0, 0.54) !important;
 }
-.icon.md-18 {
-    font-size: 18px !important;
+.material-icons.md-18 {
+    font-size: 18px; 
 }
 .md-icon-button i {
     vertical-align: baseline;
+}
+.logo h1 a:hover{
+    color: white;
 }
 @media all and (max-width:600px) {
     body {
@@ -318,8 +320,7 @@ p i {
 }
 @media all and (min-width:1367px) and (max-width:1920px) {
     body {
-        font-size: 16px;
-        font-family: "noto";
+        font-size: 16px;        
         line-height: 24px;    
         height: 100%;
         max-height: 100%;

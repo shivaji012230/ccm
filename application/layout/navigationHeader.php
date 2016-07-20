@@ -1,7 +1,7 @@
 <md-toolbar class="hdrtlbr">
     <div class="md-toolbar-tools" id="toastContainer" >
         <div layout layout-align="space-between center" class="logo" flex>
-            <h1>ccm logo</h1>
+            <h1 ><a href="/leads">ccm logo</a></h1>
             <div layout layout-align="center center">
                 <md-menu-bar layout="row" layout-xs="row">
                     <md-menu>

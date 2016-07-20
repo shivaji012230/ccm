@@ -6,10 +6,10 @@
         <base href="/">
         <title>CCM</title>
         <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+                
         <!-- My Style Sheets -->
         <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+        <link href="./public/css/ccm.css" rel="stylesheet" type="text/css"/>
 
         <!-- Angular Material requires Angular.js Libraries -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
