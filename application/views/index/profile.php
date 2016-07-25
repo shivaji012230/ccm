@@ -6,7 +6,20 @@ if (!isset($_SESSION['user_name'])) {
 ?>
 <div layout="column" class="prflPrntDiv" layout-align=''>
     <md-white-frame  class="md-whiteframe-1dp" layout='row' layout-xs="row" layout-align="start end" layout-align-xs="start end"  >
-        <img id="prfPic" ng-src="images/shivaji.jpg">
+        <img id="prfPic"  ng-src="images/shivaji.jpg">
+        <div id="insert_photo" >
+            <div class="pic1stHalf" layout="column" layout-align="center center">
+                <a href="" id="iconAnchor" title="Upload new Profile">
+                    <i class=" icon-insert_photo md-dark md-24"></i>                    
+                </a>
+                <input type="file" id="prfPic_upload" title="Upload new Profile" >
+            </div>
+            <div class="close_photo"  layout="column" layout-align="center center"> 
+                <a href="" title="Remove Profile" >
+                    <i class="icon icon-close md-dark md-24"></i>
+                </a>
+            </div>
+        </div>
         <div flex-offset="10" flex-offset-xs="30" flex-offset-sm="15"><h3 class="subhead">{{userDetails.msg[0].name}}</h3></div>        
     </md-white-frame>
     <div class="md-padding prfPrntDiv" layout="row" layout-align="space-around start"  layout-xs="column" layout-align-xs="space-between stretch" layout-sm="column" layout-align-sm="space-around stretch" flex="100" flex-xs="100" flex-sm="100" flex-md="100">
@@ -43,7 +56,7 @@ if (!isset($_SESSION['user_name'])) {
                         <span>{{userDetails.msg[0].pan}}</span>
                     </p>                 
                 </div>
-               
+
             </div>
         </md-white-frame>
         <md-white-frame class="md-whiteframe-1dp md-padding mrgn_bttm" layout="column" layout-align="center stretch"  flex="33" flex-sm="100" flex-xs="100">
@@ -60,21 +73,18 @@ if (!isset($_SESSION['user_name'])) {
                         <i class="icon-email material-icons icon"></i>
                         <span>{{userDetails.msg[0].email}}</span>
                     </p>
-                    
                 </div>                
                 <div layout="row" layout-align="start start">
                     <p >
                         <i class="icon-call material-icons icon"></i>
                         <span>{{dialcode}} {{userDetails.msg[0].phone}}</span>
                     </p>
-                    
                 </div>
                 <div layout="row"  layout-align="start start">
                     <p layout="row"  layout-align="start start">
                         <i  class="icon-location material-icons icon"></i>
                         <span>{{userDetails.msg[0].addr}}</span>
                     </p>
-                    
                 </div>
             </div>
         </md-white-frame>

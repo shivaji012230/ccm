@@ -139,7 +139,8 @@ md-toast {
     border-radius: 50%;
     margin: 0px 10px;
     position: absolute;
-    top: 75px;
+    overflow: hidden;
+    top: 78px;
     width: 100px;
     height: 100px;
     box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
@@ -200,11 +201,90 @@ p i {
 .material-icons.md-18 {
     font-size: 18px; 
 }
+.md-24 {
+    font-size: 24px; 
+}
 .md-icon-button i {
     vertical-align: baseline;
 }
 .logo h1 a:hover{
     color: white;
+}
+#insert_photo {
+    position: absolute;    
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    top: 78px;
+    left: 10px;
+    opacity: 0;
+    text-align: center;
+    -webkit-transition: opacity .2s ease-in;
+    transition: opacity .2s ease-in;
+}
+#insert_photo:hover {
+    opacity: 1;    
+}
+#insert_photo:hover  .pic1stHalf #iconAnchor i.icon-insert_photo{
+    text-align: center;
+    margin-top: 10px;    
+}
+#insert_photo:hover  .pic1stHalf {
+    top: 0px; 
+    opacity: 1;
+}
+#insert_photo:hover  .close_photo { 
+    top: 0px;      
+    opacity: 1;
+}
+.pic1stHalf {    
+    width: 100px;
+    height: 52px;
+    top: -50px;         
+    background: rgba(255,255,255,.75);
+    position: relative;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+    opacity: 0;
+    -webkit-transition: top .2s ease-in,opacity .2s ease-in;
+    transition: top .2s ease-in,opacity .2s ease-in;
+}
+.close_photo {
+    width: 100px;
+    height: 52px;
+    top: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;    
+    background: rgba(255,255,255,.75);
+    position: relative;    
+    opacity: 0;
+    -webkit-transition: top .2s ease-in,opacity .2s ease-in;
+    transition: top .2s ease-in,opacity .2s ease-in;
+}
+#iconAnchor {
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+#prfPic_upload {
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;    
+    opacity: 0;    
+    cursor: pointer;    
+}
+.icon-insert_photo{
+    display: table-cell;
+    vertical-align: middle;
+    color: rgba(0,0,0,.5);    
+}
+a .md-dark {
+    color: rgba(0, 0, 0, 0.54);
 }
 @media all and (max-width:600px) {
     body {
@@ -242,9 +322,9 @@ p i {
         border-radius: 50%;
         margin: 0px 7px;
         position: absolute;
-        top: 62px;
-        width: 67px;
-        height: 67px;
+        top: 60px;
+        width: 66px;
+        height: 66px;
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
     }
     .prfPrntDiv {
@@ -260,6 +340,41 @@ p i {
         margin-top: 30px;
         margin-left: -56px;
         width: 45px;        
+    }
+    #insert_photo {
+        position: absolute;    
+        width: 66px;
+        height: 66px;
+        overflow: hidden;
+        border-radius: 50%;
+        top: 60px;
+        left: 7px;
+        opacity: 0;
+        text-align: center;
+        -webkit-transition: opacity .2s ease-in;
+        transition: opacity .2s ease-in;
+    }
+    #insert_photo:hover  .pic1stHalf { 
+        width: 68px;
+        height: 34px;
+        top: 0px; 
+        left: 0px;
+        border-top-right-radius: 47px;
+        border-top-left-radius: 47px;   
+        background: rgba(255,255,255,.75);
+        position: relative;
+        opacity: 0.7;
+    }
+    #insert_photo:hover  .close_photo {
+        width: 68px;
+        height: 34px;
+        top: 0px;
+        left: 0px;
+        border-bottom-right-radius: 47px;
+        border-bottom-left-radius: 47px;    
+        background: rgba(255,255,255,.75);
+        position: relative;    
+        opacity: 0.7;
     }
 }
 @media all and (min-width:600px) and (max-width:960px) {
@@ -304,6 +419,41 @@ p i {
     .prflPrntDiv {
         height: auto;
     }
+    #insert_photo {
+        position: absolute;    
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 50%;
+        top: 58px;
+        left: 10px;
+        opacity: 0;
+        text-align: center;
+        -webkit-transition: opacity .2s ease-in;
+        transition: opacity .2s ease-in;
+    }
+    #insert_photo:hover .pic1stHalf { 
+        width: 80px;
+        height: 40px;
+        top: 0px; 
+        left: 0px;
+        border-top-right-radius: 40px;
+        border-top-left-radius: 40px;   
+        background: rgba(255,255,255,.75);
+        position: relative;
+        opacity: 0.7;
+    }
+    #insert_photo:hover .close_photo {
+        width: 80px;
+        height: 40px;
+        top: 0px;
+        left: 0px;
+        border-bottom-right-radius: 40px;
+        border-bottom-left-radius: 40px;    
+        background: rgba(255,255,255,.75);
+        position: relative;    
+        opacity: 0.7;
+    }
 }
 @media all and (min-width:960px) and (max-width:1280px) {
    body {
@@ -314,7 +464,7 @@ p i {
         border-radius: 50%;
         margin: 0px 10px;
         position: absolute;
-        top: 83px;
+        top: 80px;
         width: 90px;
         height: 90px;
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
@@ -322,6 +472,41 @@ p i {
     .prflPrntDiv {
         height: auto;
         min-height: 100%;
+    }
+    #insert_photo {        
+        position: absolute;    
+        width: 90px;
+        height: 90px;
+        overflow: hidden;
+        border-radius: 50%;
+        top: 80px;
+        left: 10px;
+        opacity: 0;
+        text-align: center;
+        -webkit-transition: opacity .2s ease-in;
+        transition: opacity .2s ease-in;
+    }
+    #insert_photo:hover  .pic1stHalf { 
+        width: 90px;
+        height: 48px;
+        top: 0px; 
+        left: 0px;
+        border-top-right-radius: 48px;
+        border-top-left-radius: 48px;   
+        background: rgba(255,255,255,.75);
+        position: relative;
+        opacity: 0.7;
+}
+    #insert_photo:hover  .close_photo {
+        width: 90px;
+        height: 48px;
+        top: 0px;
+        left: 0px;
+        border-bottom-right-radius: 48px;
+        border-bottom-left-radius: 48px;    
+        background: rgba(255,255,255,.75);
+        position: relative;    
+        opacity: 0.7;
     }
 }
 @media all and (min-width:1367px) and (max-width:1920px) {
@@ -340,6 +525,19 @@ p i {
         width: 100px;
         height: 100px;
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+    }
+    #insert_photo {
+        position: absolute;    
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 50%;
+        top: 75px;
+        left: 10px;
+        opacity: 0;
+        text-align: center;
+        -webkit-transition: opacity .2s ease-in;
+        transition: opacity .2s ease-in;
     }    
     .prfPrntDiv {
         margin-top: 40px;

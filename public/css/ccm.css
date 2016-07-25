@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'ccm';
-  src: url('../fonts/ccm.eot');
+/*  src: url('../fonts/ccm.eot');*/
   src: url('../fonts/ccm.eot') format('embedded-opentype'),
        url('../fonts/ccm.woff2') format('woff2'),
        url('../fonts/ccm.woff') format('woff'),
@@ -14,9 +14,7 @@
   font-weight: normal;
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  width: 1em;
-  height: 1em;
+  display: inline-block;  
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -72,4 +70,6 @@
 .icon-email:before { content: '\e0be'; }
 .icon-call:before { content: '\e0cd'; }
 .icon-location:before { content: '\e0c8'; }
+.icon-insert_photo:before {content: '\e251'}
+.icon-close:before {content: '\e5cd'}
  

@@ -25,24 +25,27 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             "customer_Annual_Income": "10-25", "customer_pan": "", "customer_aadhaar": ""};
         $scope.emp = {"emp_name": "", "emp_email": "", "mobileNo": "", "emp_addr": "", "emp_level": ""};
         $scope.rcp = {"rcp_name": "", "rcp_email": "", "mobileNo": "", "rcp_addr": "", "rcp_level": ""};
-        ccmFactory.getData("public/js/users.json").success(function (data) {
-            $scope.userDetails = data;
-        });
-        ccmFactory.getData("public/js/leads.json").success(function (data) {
+        angular.element(document).ready(function () {
+            ccmFactory.getData("public/js/users.json").success(function (data) {
+                $scope.userDetails = data;
+            });
+            ccmFactory.getData("public/js/leads.json").success(function (data) {
             angular.forEach(data.msg, function (value, index) {
                 var id = Math.floor(Math.random() * 10000);
                 $scope.leadsJsonNew[index] = value;
                 $scope.leadsJsonNew[index].id = id;
                 $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
             });
-        });
-        ccmFactory.getData("public/js/countryCodes.json").success(function (data) {
-            $scope.codess = data;
-            for (i = 0; i < Object.keys($scope.codess).length; i++) {
-                var id = Math.floor(Math.random() * 10000);
-                $scope.codess[i].id = id;
-            }
+            });
+            ccmFactory.getData("public/js/countryCodes.json").success(function (data) {
+                $scope.codess = data;
+                for (i = 0; i < Object.keys($scope.codess).length; i++) {
+                    var id = Math.floor(Math.random() * 10000);
+                    $scope.codess[i].id = id;
+                }
+            });
         });        
+        
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
@@ -171,7 +174,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 'rcp_name': rcp.rcp_name,
                 'rcp_email': rcp.rcp_email,
                 'dialcode': $scope.dialcode,
-                'phone':rcp.mobileNo,
+                'phone': rcp.mobileNo,
                 'rcp_addr': rcp.rcp_addr,
                 'rcp_level': rcp.rcp_level
             });
@@ -199,7 +202,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 'Owned_Returned': leads.Owned_Returned,
                 'nature_of_business': leads.nature_of_business,
                 'dialcode': $scope.dialcode,
-                'business_phn':leads.mobileNo,
+                'business_phn': leads.mobileNo,
                 'employee': leads.employee,
                 'professional': leads.professional,
                 'customer_Annual_Income': leads.customer_Annual_Income,
@@ -237,7 +240,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                                     parent: angular.element(document.querySelector('#toastContainer')),
                                     hideDelay: 1000
                                 })
-                        );
+                                );
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -248,7 +251,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             $params = $.param({
                 'user_email': userDetails.msg[0].email,
                 'dialcode': $scope.dialcode,
-                'phone':userDetails.msg[0].phone,
+                'phone': userDetails.msg[0].phone,
                 'address': userDetails.msg[0].addr
             });
             ccmFactory.postData($params, url)
@@ -263,7 +266,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                                     parent: angular.element(document.querySelector('#toastContainer')),
                                     hideDelay: 1000
                                 })
-                        );
+                                );
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -282,16 +285,16 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                         $mdDialog.cancel();
                         $timeout(function () {
                             $mdToast.show(
-                                $mdToast.simple({
-                                    template: "<md-toast  class='fade' id='toastId'>" +
-                                            "<span class='md-toast-text' flex > Saved </span>" +
-                                            "</md-toast>",
-                                    position: 'bottom left',
-                                    parent: angular.element(document.querySelector('#toastContainer')),
-                                    hideDelay: 1000
-                                })
-                            );
-                        }, 100);                        
+                                    $mdToast.simple({
+                                        template: "<md-toast  class='fade' id='toastId'>" +
+                                                "<span class='md-toast-text' flex > Saved </span>" +
+                                                "</md-toast>",
+                                        position: 'bottom left',
+                                        parent: angular.element(document.querySelector('#toastContainer')),
+                                        hideDelay: 1000
+                                    })
+                                    );
+                        }, 100);
                         function passwordInterval() {
                             var seconds = Math.floor((new Date() - startTime) / 1000);
                             interval = Math.floor(seconds / 3600);
@@ -320,7 +323,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                         }
                         if ($scope.pw1 !== '') {
                             //console.log($rootScope.promise);
-                            if (angular.isDefined($rootScope.promise)) {                                
+                            if (angular.isDefined($rootScope.promise)) {
                                 $interval.cancel($rootScope.promise);
                                 $rootScope.promise = undefined;
                             }
@@ -440,7 +443,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                                     parent: angular.element(document.querySelector('#toastContainer')),
                                     hideDelay: 2000
                                 })
-                        );
+                                );
                     })
                     .error(function (data, status, headers, config) {
                         console.log("Something Wrong");
@@ -482,11 +485,131 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 filename: "myFileName",
                 fileext: ".xls"
             });
-        };
+        };        
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
-        
+//        $('#insert_photo').hover(function() { 
+//            
+//                $('this').css({opacity:0.7});
+//                $('.pic1stHalf').css({
+//                    opacity          : 0.7,                
+//                    top              : '10px',                
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//                $('.close_photo').css({
+//                    opacity          : 0.7,                
+//                    top              : '10px',               
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//                        
+//        });
+//        if($(window).width() < 600) {
+//            
+//        }
+//        if(600 < $(window).width() < 960) {
+//            $('#insert_photo').hover(function() { 
+//                $('this').css({opacity:0.7});
+//                $('.pic1stHalf').css({
+//                    opacity          : 0.7,
+//                    width            : '80px',
+//                    height           : '40px',
+//                    top              : '10px',                    
+//                    left             : '10px',
+//                    'border-top-right-radius' : '40px',
+//                    'border-top-left-radius'  : '40px',
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//                $('.close_photo').css({
+//                    opacity          : 0.7,
+//                    width            : '80px',
+//                    height           : '40px',
+//                    top              : '10px',                    
+//                    left             : '10px',
+//                    'border-bottom-right-radius' : '40px',
+//                    'border-bottom-left-radius'  : '40px',
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//            });
+//        }
+//        if(960 < $(window).width() < 1280) {
+//            $('#insert_photo').hover(function() { 
+//                $('this').css({opacity:0.7});
+//                $('.pic1stHalf').css({
+//                    opacity          : 0.7,
+//                    width            : '90px',
+//                    height           : '48px',
+//                    top              : '10px',                    
+//                    left             : '10px',
+//                    'border-top-right-radius' : '48px',
+//                    'border-top-left-radius'  : '48px',
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//                $('.close_photo').css({
+//                    opacity          : 0.7,
+//                    width            : '90px',
+//                    height           : '48px',
+//                    top              : '10px',                    
+//                    left             : '10px',
+//                    'border-bottom-right-radius' : '48px',
+//                    'border-bottom-left-radius'  : '48px',
+//                    WebkitTransition : 'top 1s ease-in-out',
+//                    MozTransition    : 'top 1s ease-in-out',
+//                    MsTransition     : 'top 1s ease-in-out',
+//                    OTransition      : 'top 1s ease-in-out',
+//                    transition       : 'top .2s ease-in-out'
+//                });
+//            });
+//        }
+//        $('#insert_photo').mouseleave(function(){
+//            $('this').css({
+//                opacity          : 0,
+//                transition       : 'opacity 1s ease-in-out'
+//            });
+//            $('.pic1stHalf').css({
+//                opacity          : 0,
+//                top              : '-40px',                
+//                WebkitTransition : 'top 1s ease-in-out',
+//                MozTransition    : 'top 1s ease-in-out',
+//                MsTransition     : 'top 1s ease-in-out',
+//                OTransition      : 'top 1s ease-in-out',
+//                transition       : 'top .5s ease-in-out'
+//            });
+//            $('.close_photo').css({
+//                opacity          : 0,
+//                top              : '60px',                
+//                WebkitTransition : 'top 1s ease-in-out',
+//                MozTransition    : 'top 1s ease-in-out',
+//                MsTransition     : 'top 1s ease-in-out',
+//                OTransition      : 'top 1s ease-in-out',
+//                transition       : 'top .5s ease-in-out'
+//            });
+//        });
+
+//        $('#pic1stHalf').click(function(e){
+//            $(inpFile).click();
+//        });
+            
 
     }]);
 app.directive("whenScrolled", function ($document) {
@@ -528,23 +651,23 @@ app.directive('dateValidation', function () {
 
 
 app.directive('pwdCheck', function () {
-  return {
-    require: 'ngModel',
-    scope: {
-      pwdCheck: '='
-    },
-    link: function(scope, element, attrs, ngModel) {
-      scope.$watch('pwdCheck', function() {
-        ngModel.$validate(); 
-      });
-      ngModel.$validators.match = function(modelValue) {
-        if (!modelValue || !scope.pwdCheck) {
-            return true;
-        }        
-        return modelValue === scope.pwdCheck;
-      };
-    }
-  };
+    return {
+        require: 'ngModel',
+        scope: {
+            pwdCheck: '='
+        },
+        link: function (scope, element, attrs, ngModel) {
+            scope.$watch('pwdCheck', function () {
+                ngModel.$validate();
+            });
+            ngModel.$validators.match = function (modelValue) {
+                if (!modelValue || !scope.pwdCheck) {
+                    return true;
+                }
+                return modelValue === scope.pwdCheck;
+            };
+        }
+    };
 });
 app.factory('ccmFactory', ['$http', function ($http) {
         $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
@@ -624,6 +747,27 @@ app.factory('ccmFactory', ['$http', function ($http) {
 //            url : '/' + url + '?' + getParams
 //        });
 //    };
+//    khData.fileUpload = function (url, data) {
+//            var fd = new FormData();
+//            Object.keys(data).map(function (key) {
+//                fd.append(key, data[key]);
+//            });
 //
+//            if (KH_CONSTANTS.USER.auth) {
+//                fd.append('auth', KH_CONSTANTS.USER.auth);
+//                fd.append('usr', KH_CONSTANTS.USER.uid);
+//            }
+//
+//            return $http({
+//                method: 'POST',
+//                url: api + '/' + url,
+//                headers: {
+//                    'Content-Type': undefined
+//                },
+//                transformRequest: angular.identity,
+//                data: fd
+//            });   
+//
+//        };
 //    return ccmData;
 //}]);
