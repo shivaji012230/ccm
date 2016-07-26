@@ -16,6 +16,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $scope.pw1 = '';
         $scope.leadsJsonNew = [];
         $scope.totalDisplayed = 20;
+        //$scope.prflPic = "shivaji.jpg";
         $scope.imagePath = "images/myPic.jpg";
         $scope.security = {'username': 'shivaji', 'password': ''};
         $scope.items = [{"name": "Self Employeed"}, {"name": 'Employee'}, {"name": 'Professional'}];
@@ -30,12 +31,12 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 $scope.userDetails = data;
             });
             ccmFactory.getData("public/js/leads.json").success(function (data) {
-            angular.forEach(data.msg, function (value, index) {
-                var id = Math.floor(Math.random() * 10000);
-                $scope.leadsJsonNew[index] = value;
-                $scope.leadsJsonNew[index].id = id;
-                $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
-            });
+                angular.forEach(data.msg, function (value, index) {
+                    var id = Math.floor(Math.random() * 10000);
+                    $scope.leadsJsonNew[index] = value;
+                    $scope.leadsJsonNew[index].id = id;
+                    $scope.leadsJsonNew[index].biz = JSON.parse($scope.leadsJsonNew[index].biz);
+                });
             });
             ccmFactory.getData("public/js/countryCodes.json").success(function (data) {
                 $scope.codess = data;
@@ -44,8 +45,8 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                     $scope.codess[i].id = id;
                 }
             });
-        });        
-        
+        });
+        console.log($scope.prflPic);
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
@@ -478,6 +479,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                     });
 
         };
+        /* Export Excel Sheet*/
         $scope.exportData = function () {
             $(".country_table").table2excel({
                 exclude: ".noExl",
@@ -485,133 +487,50 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 filename: "myFileName",
                 fileext: ".xls"
             });
-        };        
+        };
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
-//        $('#insert_photo').hover(function() { 
-//            
-//                $('this').css({opacity:0.7});
-//                $('.pic1stHalf').css({
-//                    opacity          : 0.7,                
-//                    top              : '10px',                
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//                $('.close_photo').css({
-//                    opacity          : 0.7,                
-//                    top              : '10px',               
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//                        
-//        });
-//        if($(window).width() < 600) {
-//            
-//        }
-//        if(600 < $(window).width() < 960) {
-//            $('#insert_photo').hover(function() { 
-//                $('this').css({opacity:0.7});
-//                $('.pic1stHalf').css({
-//                    opacity          : 0.7,
-//                    width            : '80px',
-//                    height           : '40px',
-//                    top              : '10px',                    
-//                    left             : '10px',
-//                    'border-top-right-radius' : '40px',
-//                    'border-top-left-radius'  : '40px',
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//                $('.close_photo').css({
-//                    opacity          : 0.7,
-//                    width            : '80px',
-//                    height           : '40px',
-//                    top              : '10px',                    
-//                    left             : '10px',
-//                    'border-bottom-right-radius' : '40px',
-//                    'border-bottom-left-radius'  : '40px',
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//            });
-//        }
-//        if(960 < $(window).width() < 1280) {
-//            $('#insert_photo').hover(function() { 
-//                $('this').css({opacity:0.7});
-//                $('.pic1stHalf').css({
-//                    opacity          : 0.7,
-//                    width            : '90px',
-//                    height           : '48px',
-//                    top              : '10px',                    
-//                    left             : '10px',
-//                    'border-top-right-radius' : '48px',
-//                    'border-top-left-radius'  : '48px',
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//                $('.close_photo').css({
-//                    opacity          : 0.7,
-//                    width            : '90px',
-//                    height           : '48px',
-//                    top              : '10px',                    
-//                    left             : '10px',
-//                    'border-bottom-right-radius' : '48px',
-//                    'border-bottom-left-radius'  : '48px',
-//                    WebkitTransition : 'top 1s ease-in-out',
-//                    MozTransition    : 'top 1s ease-in-out',
-//                    MsTransition     : 'top 1s ease-in-out',
-//                    OTransition      : 'top 1s ease-in-out',
-//                    transition       : 'top .2s ease-in-out'
-//                });
-//            });
-//        }
-//        $('#insert_photo').mouseleave(function(){
-//            $('this').css({
-//                opacity          : 0,
-//                transition       : 'opacity 1s ease-in-out'
-//            });
-//            $('.pic1stHalf').css({
-//                opacity          : 0,
-//                top              : '-40px',                
-//                WebkitTransition : 'top 1s ease-in-out',
-//                MozTransition    : 'top 1s ease-in-out',
-//                MsTransition     : 'top 1s ease-in-out',
-//                OTransition      : 'top 1s ease-in-out',
-//                transition       : 'top .5s ease-in-out'
-//            });
-//            $('.close_photo').css({
-//                opacity          : 0,
-//                top              : '60px',                
-//                WebkitTransition : 'top 1s ease-in-out',
-//                MozTransition    : 'top 1s ease-in-out',
-//                MsTransition     : 'top 1s ease-in-out',
-//                OTransition      : 'top 1s ease-in-out',
-//                transition       : 'top .5s ease-in-out'
-//            });
-//        });
-
-//        $('#pic1stHalf').click(function(e){
-//            $(inpFile).click();
-//        });
-            
-
+        /* Image Upload */
+        $scope.uploadImage = function (elm) {
+            console.log(elm.files[0]);                            
+            if (elm.files[0].type === 'image/jpeg' || elm.files[0].type === 'image/png' || elm.files[0].type === 'image/gif' || elm.files[0].type === 'image/jpg') {
+                if (elm.files[0].size <= 2097152) {                                                
+                    ccmFactory.fileUpload("userimg", {"file": elm.files[0]})
+                            .success(function () {
+                                alert("pic upload successfully");
+                            })
+                            .error(function () {
+                                alert("Something Wrong");
+                            });
+                } else {
+                    alert("Must be size less than 2MB");
+                }
+            } else {
+                alert("wrong file formate");
+            }            
+        };
     }]);
+app.directive('pfpcDirective', function (ccmFactory) {
+    return {
+        restrict: 'A',
+        scope: true,
+        link: function (scope, element, attr) {
+
+            element.bind('change', function () {
+                var formData = new FormData();
+                formData.append('file', element[0].files[0]);
+                ccmFactory.postData(formData, "profilePic")
+                    .success(function () {
+                        alert("pic upload successfully");
+                    })
+                    .error(function () {
+                        console.log("Something Wrong");
+                    });                
+            });
+        }
+    };
+});
 app.directive("whenScrolled", function ($document) {
     return {
         link: function (scope, elem, attrs) {
@@ -688,7 +607,20 @@ app.factory('ccmFactory', ['$http', function ($http) {
                     data: data
                 });
             },
-            pwdUpdate: function () {
+            fileUpload: function (url, data) {
+                var fd = new FormData();
+                Object.keys(data).map(function (key) {
+                    fd.append(key, data[key]);
+                });
+                return $http({
+                    method: 'POST',
+                    url: url,
+                    headers: {
+                        'Content-Type': undefined
+                    },
+                    transformRequest: angular.identity,
+                    data: fd
+                });
 
             }
         };
