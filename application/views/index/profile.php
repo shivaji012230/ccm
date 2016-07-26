@@ -6,17 +6,17 @@ if (!isset($_SESSION['user_name'])) {
 ?>
 <div layout="column" class="prflPrntDiv">
     <md-white-frame  class="md-whiteframe-1dp" layout='row' layout-xs="row" layout-align="start end" layout-align-xs="start end"  >
-        <img id="prfPic"  ng-src="images/shivaji.jpg">
+        <img id="prfPic"  ng-src="images/{{prfPic}}">
         <div id="insert_photo" >
             <div class="pic1stHalf" layout="column" layout-align="center center">
                 <a href="" id="iconAnchor" title="Upload new Profile">
                     <i class=" icon-insert_photo md-dark md-24"></i>                    
                 </a>
-                <input type="file"   id="prfPic_upload" title="Upload new Profile" onchange="angular.element(this).scope().uploadImage(this);" ng-model="prflPic">
+                <input type="file" id="prfPic_upload" title="Upload new Profile" onchange="angular.element(this).scope().uploadImage(this);" ng-model="prfPic">
             </div>
             <div class="close_photo"  layout="column" layout-align="center center"> 
-                <a href="" title="Remove Profile">
-                    <i class="icon icon-close md-dark md-24"></i>
+                <a title="Remove Profile" id="iconAnchor" ng-click="removePfpc()">
+                    <i class="icon icon-close icon-insert_photo md-dark md-24"></i>
                 </a>
             </div>
         </div>
