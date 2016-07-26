@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_name'])) {
                 <a href="" id="iconAnchor" title="Upload new Profile">
                     <i class=" icon-insert_photo md-dark md-24"></i>                    
                 </a>
-                <input type="file" pfpc-directive id="prfPic_upload" title="Upload new Profile" onchange="angular.element(this).scope().uploadImage(this);" ng-model="prflPic">
+                <input type="file"   id="prfPic_upload" title="Upload new Profile" onchange="angular.element(this).scope().uploadImage(this);" ng-model="prflPic">
             </div>
             <div class="close_photo"  layout="column" layout-align="center center"> 
                 <a href="" title="Remove Profile">
