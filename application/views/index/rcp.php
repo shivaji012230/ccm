@@ -1,7 +1,7 @@
 <?php
 //session_start();
 if(!isset($_SESSION['user_name'])) {
-    header("Location:/login");
+    header("Location:/");
 }
 ?>
 <div layout="column" layout-align="space-between stretch" class="minhgt">

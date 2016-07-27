@@ -226,10 +226,6 @@ p i {
 #insert_photo:hover {
     opacity: 1;    
 }
-#insert_photo:hover  .pic1stHalf #iconAnchor i.icon-insert_photo{
-    text-align: center;
-    margin-top: 10px;    
-}
 #insert_photo:hover  .pic1stHalf {
     top: 0px; 
     opacity: 1;
@@ -244,6 +240,7 @@ p i {
     top: -50px;         
     background: rgba(255,255,255,.75);
     position: relative;
+    border-bottom: 1px solid rgba(255,255,255,.75);
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
     opacity: 0;

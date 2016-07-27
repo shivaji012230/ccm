@@ -8,9 +8,6 @@ class Bootstrap {
         if (empty($url[0])) {
             require APP_PATH . '/controllers/index.php';
             (new Index())->index();
-        } elseif ($url[0] == 'login') {
-            require APP_PATH . '/controllers/index.php';
-            (new Index())->login();
         } elseif ($url[0] == 'employee') {
             require APP_PATH . '/controllers/index.php';
             (new Index())->employee();

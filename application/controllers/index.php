@@ -5,11 +5,8 @@ class Index extends Controller{
       parent::__construct();
   }  
   public function index(){
-    $this->view->render('index/login',TRUE);
-  }
-  public function login(){
-    $this->view->render('index/login',TRUE);
-  }
+    $this->view->render('index/index',TRUE);
+  }  
   public function employee(){
     $this->view->render('index/employee');
   }

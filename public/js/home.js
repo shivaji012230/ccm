@@ -8,7 +8,6 @@ app.config(function ($mdThemingProvider) {
             .accentPalette('orange');
 });
 app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactory', '$mdToast', '$timeout', '$rootScope', '$filter', function ($scope, $mdDialog, $interval, ccmFactory, $mdToast, $timeout, $rootScope, $filter) {
-        $scope.child = {};
         $scope.dialcode = "+91";
         $scope.dob = "25-04-1991";
         $scope.general = {"dob": new Date("04 25,1991 "), "gender": "Male"};
@@ -16,8 +15,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $scope.pw1 = '';
         $scope.leadsJsonNew = [];
         $scope.totalDisplayed = 20;
-        //$scope.prflPic = "shivaji.jpg";
-        $scope.imagePath = "images/myPic.jpg";
+        $scope.prfPic = "shivaji.jpg";        
         $scope.security = {'username': 'shivaji', 'password': ''};
         $scope.items = [{"name": "Self Employeed"}, {"name": 'Employee'}, {"name": 'Professional'}];
         $scope.leads = {"customer_name": "", "customer_addr": "", "select_customer": "", "self_emp": "",
@@ -45,8 +43,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                     $scope.codess[i].id = id;
                 }
             });
-        });
-        console.log($scope.prflPic);
+        });       
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
@@ -318,19 +315,14 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                             if (seconds > 1) {
                                 return $rootScope.stopwatch = "few secs";
                             }
-//                            if (seconds === 1) {
-//                                return $rootScope.stopwatch = Math.floor(seconds) + " sec";
-//                            }
                         }
-                        if ($scope.pw1 !== '') {
-                            //console.log($rootScope.promise);
+                        if ($scope.pw1 !== '') {                            
                             if (angular.isDefined($rootScope.promise)) {
                                 $interval.cancel($rootScope.promise);
                                 $rootScope.promise = undefined;
                             }
                             $rootScope.promise = $interval(passwordInterval, 1000);
                         }
-
                     })
                     .error(function () {
                         console.log("Data Not Inserted");
@@ -491,9 +483,13 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
+        /* Remove profile pic */
+        $scope.removePfpc = function() {            
+            alert("demo picture close");            
+        };
         /* Image Upload */
         $scope.uploadImage = function (elm) {
-            console.log(elm.files[0]);                            
+            //console.log(elm.files);                            
             if (elm.files[0].type === 'image/jpeg' || elm.files[0].type === 'image/png' || elm.files[0].type === 'image/gif' || elm.files[0].type === 'image/jpg') {
                 if (elm.files[0].size <= 2097152) {                                                
                     ccmFactory.fileUpload("userimg", {"file": elm.files[0]})
@@ -511,26 +507,26 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             }            
         };
     }]);
-app.directive('pfpcDirective', function (ccmFactory) {
-    return {
-        restrict: 'A',
-        scope: true,
-        link: function (scope, element, attr) {
-
-            element.bind('change', function () {
-                var formData = new FormData();
-                formData.append('file', element[0].files[0]);
-                ccmFactory.postData(formData, "profilePic")
-                    .success(function () {
-                        alert("pic upload successfully");
-                    })
-                    .error(function () {
-                        console.log("Something Wrong");
-                    });                
-            });
-        }
-    };
-});
+//app.directive('pfpcDirective', function (ccmFactory) {
+//    return {
+//        restrict: 'A',
+//        scope: true,
+//        link: function (scope, element, attr) {
+//
+//            element.bind('change', function () {
+//                var formData = new FormData();
+//                formData.append('file', element[0].files[0]);
+//                ccmFactory.postData(formData, "profilePic")
+//                    .success(function () {
+//                        alert("pic upload successfully");
+//                    })
+//                    .error(function () {
+//                        console.log("Something Wrong");
+//                    });                
+//            });
+//        }
+//    };
+//});
 app.directive("whenScrolled", function ($document) {
     return {
         link: function (scope, elem, attrs) {
@@ -608,9 +604,9 @@ app.factory('ccmFactory', ['$http', function ($http) {
                 });
             },
             fileUpload: function (url, data) {
-                var fd = new FormData();
-                Object.keys(data).map(function (key) {
-                    fd.append(key, data[key]);
+                var fd = new FormData();                
+                Object.keys(data).forEach(function (key) {
+                    fd.append(key, data[key]);                    
                 });
                 return $http({
                     method: 'POST',
@@ -621,42 +617,9 @@ app.factory('ccmFactory', ['$http', function ($http) {
                     transformRequest: angular.identity,
                     data: fd
                 });
-
             }
         };
     }]);
-//app.factory('pwdService', function ($interval) {
-//    var Service = {};
-//    Service.foo = function () {
-//        var startTime = new Date();
-//        $interval(function () {
-//            var seconds = Math.floor((new Date() - startTime) / 1000);
-//            var interval = Math.floor(seconds / 31536000);
-//            if (interval >= 1) {
-//                return interval + " yrs";
-//            }
-//            interval = Math.floor(seconds / 2592000);
-//            if (interval >= 1) {
-//                return interval + " months";
-//            }
-//            interval = Math.floor(seconds / 86400);
-//            if (interval >= 1) {
-//                return interval + " days";
-//            }
-//            interval = Math.floor(seconds / 3600);
-//            if (interval >= 1) {
-//                return interval + " hrs";
-//            }
-//            interval = Math.floor(seconds / 60);
-//            if (interval >= 1) {
-//                return interval + " mins";
-//            }
-//            return Math.floor(seconds) + " secs";
-//
-//        }, 1000);
-//    };
-//    return Service;
-//});
 //app.factory('ccmApp', ['$http',  function ($http) {
 //    $http.defaults.headers.post["Content-Type"] = 'application/x-www-form-urlencoded; charset=utf-8';
 //    var ccmData = {};
