@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_name'])) {
     <md-content>        
         <div class="user md-padding" >
             <div layout layout-xs="column" layout-align="end center">
-                <md-button class=" md-primary" ng-click="addNewLead()">NEW LEAD</md-button>
+                <md-button class=" md-primary" ng-click="addNewLead($event)">NEW LEAD</md-button>
                 <md-button class=" md-primary" ng-click="exportData()">EXPORT TO EXCEL</md-button>                
             </div>
             <div id="exportable" >

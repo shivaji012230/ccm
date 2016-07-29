@@ -72,4 +72,5 @@
 .icon-location:before { content: '\e0c8'; }
 .icon-insert_photo:before {content: '\e251'}
 .icon-close:before {content: '\e5cd'}
- 
+.icon-wallpaper:before {content: '\e1bc'}
+.icon-delete:before {content: '\e872'}

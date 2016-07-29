@@ -1,4 +1,4 @@
-<md-toolbar class="hdrtlbr">
+<md-toolbar class="hdrtlbr md-whiteframe-1dp">
     <div class="md-toolbar-tools" id="toastContainer" >
         <div layout layout-align="space-between center" class="logo" flex>
             <h1 ><a href="/leads">ccm logo</a></h1>

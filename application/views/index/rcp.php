@@ -9,7 +9,7 @@ if(!isset($_SESSION['user_name'])) {
         <div layout="column" layout-align="center center">
             <div class="md-padding"></div>
             <div layout layout-xs="column" >
-                <md-button class="md-raised md-primary" ng-click="addNewRcp()">Add New Rcp</md-button>
+                <md-button class="md-raised md-primary" ng-click="addNewRcp($event)">Add New Rcp</md-button>
                 <div layout>
                     <input type="text" class="mySearch" ng-model="mySearch" placeholder="search" > 
                     <md-button  class="md-icon-button searchIcon" aria-label="Search">                        

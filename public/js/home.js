@@ -14,8 +14,7 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $scope.user = 'shivaji';
         $scope.pw1 = '';
         $scope.leadsJsonNew = [];
-        $scope.totalDisplayed = 20;
-        $scope.prfPic = "shivaji.jpg";        
+        $scope.totalDisplayed = 20;                
         $scope.security = {'username': 'shivaji', 'password': ''};
         $scope.items = [{"name": "Self Employeed"}, {"name": 'Employee'}, {"name": 'Professional'}];
         $scope.leads = {"customer_name": "", "customer_addr": "", "select_customer": "", "self_emp": "",
@@ -27,6 +26,9 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         angular.element(document).ready(function () {
             ccmFactory.getData("public/js/users.json").success(function (data) {
                 $scope.userDetails = data;
+            });
+            ccmFactory.getData("userimg.php").success(function (data) {
+                $rootScope.prfPic = data;
             });
             ccmFactory.getData("public/js/leads.json").success(function (data) {
                 angular.forEach(data.msg, function (value, index) {
@@ -43,7 +45,17 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                     $scope.codess[i].id = id;
                 }
             });
-        });       
+        });
+        $scope.confirmDialog = function (ev, ttl, text, ok, cancel) {
+            ok = ok != null ? ok : "Yes";
+            cancel = cancel != null ? cancel : "No";
+            var confirm = $mdDialog.confirm()
+                    .title(ttl).textContent(text)
+                    .ariaLabel(text)
+                    .targetEvent(ev)
+                    .ok(ok).cancel(cancel);
+            return $mdDialog.show(confirm);
+        };
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
@@ -89,35 +101,39 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
             $scope.totalDisplayed += 20;
         };
         $scope.login = {'username': '', 'pwd': ''};
-        $scope.addNewEmployee = function () {
+        $scope.addNewEmployee = function (ev) {
             $mdDialog.show({
                 templateUrl: '/partials/empfrm',
                 clickOutsideToClose: false,
                 escapeToClose: false,
+                targetEvent:ev,
                 controller: 'ccm_controller'
             });
         };
-        $scope.addNewRcp = function () {
+        $scope.addNewRcp = function (ev) {
             $mdDialog.show({
                 templateUrl: '/partials/rcpfrm',
                 clickOutsideToClose: false,
                 escapeToClose: false,
+                targetEvent:ev,
                 controller: 'ccm_controller'
             });
         };
-        $scope.addNewLead = function () {
+        $scope.addNewLead = function (ev) {
             $mdDialog.show({
                 templateUrl: '/partials/leadsfrm',
                 clickOutsideToClose: false,
                 escapeToClose: false,
+                targetEvent:ev,
                 controller: 'ccm_controller'
             });
         };
-        $scope.generalProfileEdit = function () {
+        $scope.generalProfileEdit = function (ev) {
             $mdDialog.show({
                 templateUrl: '/partials/generaledit',
                 clickOutsideToClose: false,
                 escapeToClose: false,
+                targetEvent:ev,
                 controller: 'ccm_controller'
             });
         };
@@ -130,11 +146,12 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 controller: 'ccm_controller'
             });
         };
-        $scope.securityProfileEdit = function () {
+        $scope.securityProfileEdit = function (ev) {
             $mdDialog.show({
                 templateUrl: '/partials/securityedit',
                 clickOutsideToClose: false,
                 escapeToClose: false,
+                targetEvent:ev,
                 controller: 'ccm_controller'
             });
 
@@ -483,18 +500,21 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
         $('.menu_cls').click(function () {
             $(this).toggleClass('active');
         });
-        /* Remove profile pic */
-        $scope.removePfpc = function() {            
-            alert("demo picture close");            
-        };
+        
         /* Image Upload */
-        $scope.uploadImage = function (elm) {
-            //console.log(elm.files);                            
+        $scope.uploadImage = function (elm) {                           
             if (elm.files[0].type === 'image/jpeg' || elm.files[0].type === 'image/png' || elm.files[0].type === 'image/gif' || elm.files[0].type === 'image/jpg') {
                 if (elm.files[0].size <= 2097152) {                                                
-                    ccmFactory.fileUpload("userimg", {"file": elm.files[0]})
-                            .success(function () {
+                    ccmFactory.fileUpload("userimg.php",{"file": elm.files[0]})
+                            .success(function (data) {
+                                console.log($rootScope.prfPic);
+                                if($rootScope.prfPic !== "shivajiDefault.png"){
+                                    $params = $.param({"rp": $rootScope.prfPic});
+                                    ccmFactory.postData($params, 'userimgDel.php');
+                                }
                                 alert("pic upload successfully");
+                                console.log(data);
+                                $rootScope.prfPic = JSON.parse(data);
                             })
                             .error(function () {
                                 alert("Something Wrong");
@@ -506,27 +526,42 @@ app.controller("ccm_controller", ["$scope", "$mdDialog", "$interval", 'ccmFactor
                 alert("wrong file formate");
             }            
         };
+        $scope.removePfpc = function(ev) {
+            $scope.confirmDialog(ev, "Please confirm..", "Are you sure you want to remove this?").then(function () {
+                $params = $.param({"rp": $rootScope.prfPic});
+                ccmFactory.postData($params, 'userimgDel.php').success(function (data) {
+                    if(data !== "shivajiDefault.png")
+                        alert("profile picture deleted");
+                    $rootScope.prfPic = "shivajiDefault.png";                    
+                });
+            });  
+        };
+        $scope.changeCover = function(elm) {
+            if (elm.files[0].type === 'image/jpeg' || elm.files[0].type === 'image/png' || elm.files[0].type === 'image/gif' || elm.files[0].type === 'image/jpg') {
+                if (elm.files[0].size <= 2097152) {                                                
+                    ccmFactory.fileUpload("coverimg.php",{"file": elm.files[0]})
+                            .success(function () {
+                                alert("background changed successfully");
+                            })
+                            .error(function () {
+                                alert("Something Wrong");
+                            });
+                } else {
+                    alert("Must be size less than 2MB");
+                }
+            } else {
+                alert("wrong file formate");
+            }
+        };
+        $scope.removeCoverpc = function(ev) {
+            $scope.confirmDialog(ev, "Please confirm..", "Are you sure you want to remove this?").then(function () {
+                $params = $.param({"rp": $rootScope.coverPic});
+                ccmFactory.postData($params, 'coverDel.php').success(function () {
+                    alert("profile picture deleted");                      
+                });
+            });  
+        };
     }]);
-//app.directive('pfpcDirective', function (ccmFactory) {
-//    return {
-//        restrict: 'A',
-//        scope: true,
-//        link: function (scope, element, attr) {
-//
-//            element.bind('change', function () {
-//                var formData = new FormData();
-//                formData.append('file', element[0].files[0]);
-//                ccmFactory.postData(formData, "profilePic")
-//                    .success(function () {
-//                        alert("pic upload successfully");
-//                    })
-//                    .error(function () {
-//                        console.log("Something Wrong");
-//                    });                
-//            });
-//        }
-//    };
-//});
 app.directive("whenScrolled", function ($document) {
     return {
         link: function (scope, elem, attrs) {
@@ -581,6 +616,17 @@ app.directive('pwdCheck', function () {
                 }
                 return modelValue === scope.pwdCheck;
             };
+        }
+    };
+});
+app.factory('upldFile', function () {
+    var upldFile = {};
+    return {
+        set: function (fileJson) {
+            upldFile = fileJson;
+        },
+        get: function () {
+            return upldFile;
         }
     };
 });
